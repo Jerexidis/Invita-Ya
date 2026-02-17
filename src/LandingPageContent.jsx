@@ -341,8 +341,8 @@ const LandingPageContent = () => {
 
                     <div>
                         <h4 className="font-bold text-white mb-4">Contacto</h4>
-                        <a href="mailto:hola@Invita-Ya.com" className="flex items-center gap-2 text-sm hover:text-rose-400 mb-2">
-                            <Mail size={16} /> hola@Invita-Ya.com
+                        <a href="mailto:invitaya.ags@gmail.com" className="flex items-center gap-2 text-sm hover:text-rose-400 mb-2">
+                            <Mail size={16} /> invitaya.ags@gmail.com
                         </a>
                         <button className="mt-4 w-full py-2 bg-white/10 rounded border border-white/10 hover:bg-white/20 transition-colors text-sm">
                             Área de Clientes
