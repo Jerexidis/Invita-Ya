@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Smartphone, Heart, MousePointer, Globe, Check, Star, Menu, X, ArrowRight, Mail, Zap } from 'lucide-react';
+import { Smartphone, Heart, MousePointer, Globe, Check, Star, Menu, X, ArrowRight, Mail, Send } from 'lucide-react';
 
 const LandingPageContent = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +24,7 @@ const LandingPageContent = () => {
                         <div className="hidden md:flex items-center space-x-8">
                             <a href="#features" className="text-slate-600 hover:text-rose-500 font-medium transition-colors">Características</a>
                             <a href="#demo" className="text-slate-600 hover:text-rose-500 font-medium transition-colors">Demos</a>
-                            <a href="#pricing" className="text-slate-600 hover:text-rose-500 font-medium transition-colors">Precios</a>
+                            <a href="#contact" className="text-slate-600 hover:text-rose-500 font-medium transition-colors">Contacto</a>
                         </div>
 
                         {/* Mobile Menu Button */}
@@ -42,7 +42,7 @@ const LandingPageContent = () => {
                         <div className="flex flex-col space-y-4">
                             <a href="#features" className="text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>Características</a>
                             <a href="#demo" className="text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>Demos</a>
-                            <a href="#pricing" className="text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>Precios</a>
+                            <a href="#contact" className="text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>Contacto</a>
                         </div>
                     </div>
                 )}
@@ -57,7 +57,7 @@ const LandingPageContent = () => {
                             <Star size={14} className="fill-rose-600" /> La tendencia de 2026
                         </div>
                         <h1 className="text-5xl lg:text-7xl font-serif text-slate-900 leading-[1.1]">
-                            Invitaciones que tus invitados <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-400">amarán</span>.
+                            Invitaciones que tus invitados <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-rose-300">amarán</span>.
                         </h1>
                         <p className="text-xl text-slate-600 leading-relaxed max-w-lg mx-auto md:mx-0">
                             Olvídate del papel. Crea experiencias digitales interactivas con confirmación de asistencia (RSVP) en tiempo real, mapas y galerías de fotos.
@@ -66,22 +66,19 @@ const LandingPageContent = () => {
                             <button onClick={() => document.getElementById('demo').scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-all font-medium flex items-center justify-center gap-2">
                                 Ver Ejemplos <ArrowRight size={18} />
                             </button>
-                            <button className="w-full sm:w-auto px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 rounded-full hover:border-slate-300 transition-all font-medium">
-                                Ver Catálogo
-                            </button>
                         </div>
                         <div className="pt-4 flex items-center justify-center md:justify-start gap-4 text-sm text-slate-500">
                             <div className="flex -space-x-2">
-                                <div className="w-8 h-8 rounded-full bg-slate-200 border-2 border-white"></div>
-                                <div className="w-8 h-8 rounded-full bg-slate-300 border-2 border-white"></div>
-                                <div className="w-8 h-8 rounded-full bg-slate-400 border-2 border-white"></div>
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Cliente" className="w-8 h-8 rounded-full border-2 border-white object-cover" />
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Cliente" className="w-8 h-8 rounded-full border-2 border-white object-cover" />
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Cliente" className="w-8 h-8 rounded-full border-2 border-white object-cover" />
                             </div>
                             <p>+500 parejas felices</p>
                         </div>
                     </div>
 
                     <div className="md:w-1/2 relative">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-orange-100 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-rose-100 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
                         <img
                             src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2070&auto=format&fit=crop"
                             alt="Vista previa invitacion en movil"
@@ -190,121 +187,75 @@ const LandingPageContent = () => {
                 </div>
             </section>
 
-            {/* --- PRICING --- */}
-            <section id="pricing" className="py-24 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
-                {/* Background decoration */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-rose-100/30 rounded-full blur-[120px] pointer-events-none"></div>
+            {/* --- CONTACT --- */}
+            <section id="contact" className="py-24 bg-white">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
-                <div className="max-w-6xl mx-auto px-4 relative z-10">
-                    <div className="text-center mb-16">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-rose-50 text-rose-600 rounded-full text-sm font-semibold tracking-wide uppercase mb-4">
-                            <Zap size={14} className="fill-rose-600" /> Precios Transparentes
-                        </div>
-                        <h2 className="text-3xl md:text-5xl font-serif text-slate-900 mb-4">Invierte en tu evento, no en papel</h2>
-                        <p className="text-slate-500 max-w-2xl mx-auto text-lg">Un solo pago por evento. Sin mensualidades, sin letras chiquitas. Tu invitación estará en línea todo el tiempo que necesites.</p>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto items-start">
-
-                        {/* --- Plan Básico --- */}
-                        <div className="group border border-slate-200 rounded-3xl p-8 hover:shadow-2xl hover:border-slate-300 transition-all duration-500 bg-white relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-slate-50 to-transparent rounded-bl-full pointer-events-none"></div>
-                            <div className="relative z-10">
-                                <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mb-5">
-                                    <Globe className="text-slate-500" size={22} />
-                                </div>
-                                <h3 className="text-xl font-bold text-slate-900 mb-1">Básico</h3>
-                                <p className="text-sm text-slate-400 mb-5">Ideal para eventos íntimos</p>
-                                <div className="mb-6">
-                                    <span className="text-5xl font-bold text-slate-900">$299</span>
-                                    <span className="text-slate-400 ml-1">MXN</span>
-                                    <p className="text-xs text-slate-400 mt-1">pago único por evento</p>
-                                </div>
-                                <ul className="space-y-3.5 mb-8">
-                                    <PricingItem text="Diseño predeterminado elegante" />
-                                    <PricingItem text="Información completa del evento" />
-                                    <PricingItem text="Ubicación con Google Maps" />
-                                    <PricingItem text="Hosting incluido (3 meses)" />
-                                    <PricingItem text="Enlace único y compartible" />
-                                    <PricingItem text="RSVP digital" crossed />
-                                    <PricingItem text="Galería de fotos" crossed />
-                                </ul>
-                                <button className="w-full py-3.5 border-2 border-slate-900 text-slate-900 rounded-xl font-bold hover:bg-slate-900 hover:text-white transition-all duration-300 transform group-hover:scale-[1.02]">
-                                    Elegir Básico
-                                </button>
-                            </div>
+                        {/* Left side - Text */}
+                        <div className="w-full lg:w-1/2 space-y-6">
+                            <span className="text-rose-500 font-bold text-xs tracking-widest uppercase mb-4 block">Hablemos hoy</span>
+                            <h2 className="text-4xl lg:text-5xl font-serif text-slate-900 leading-tight">¿Hablemos de tu evento?</h2>
+                            <p className="text-slate-500 text-lg leading-relaxed max-w-md">
+                                Estamos listos para ayudarte a crear la invitación perfecta. Cuéntanos tu idea y nos pondremos en contacto contigo vía WhatsApp de inmediato.
+                            </p>
+                        
                         </div>
 
-                        {/* --- Plan Premium (Popular) --- */}
-                        <div className="group border-2 border-rose-400 rounded-3xl p-8 shadow-2xl shadow-rose-100/50 relative bg-white transform md:-translate-y-4 overflow-hidden">
-                            {/* Popular badge */}
-                            <div className="absolute -top-px left-1/2 -translate-x-1/2">
-                                <div className="bg-gradient-to-r from-rose-500 to-orange-400 text-white text-xs font-bold px-6 py-1.5 rounded-b-xl tracking-wider uppercase shadow-lg">
-                                    ⭐ Más Popular
-                                </div>
-                            </div>
-                            {/* Glow decoration */}
-                            <div className="absolute -top-20 -right-20 w-40 h-40 bg-rose-200/30 rounded-full blur-3xl pointer-events-none"></div>
-                            <div className="relative z-10 pt-4">
-                                <div className="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center mb-5">
-                                    <Heart className="text-rose-500 fill-rose-500" size={22} />
-                                </div>
-                                <h3 className="text-xl font-bold text-slate-900 mb-1">Premium</h3>
-                                <p className="text-sm text-rose-400 font-medium mb-5">La opción favorita de nuestros clientes</p>
-                                <div className="mb-6">
-                                    <span className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-400">$699</span>
-                                    <span className="text-slate-400 ml-1">MXN</span>
-                                    <p className="text-xs text-slate-400 mt-1">pago único por evento</p>
-                                </div>
-                                <ul className="space-y-3.5 mb-8">
-                                    <PricingItem text="Diseño personalizable (colores y fuentes)" />
-                                    <PricingItem text="RSVP con confirmación en tiempo real" />
-                                    <PricingItem text="Galería de fotos (hasta 10)" />
-                                    <PricingItem text="Cuenta regresiva animada" />
-                                    <PricingItem text="Sugerencias de regalos" />
-                                    <PricingItem text="Hosting incluido (6 meses)" />
-                                    <PricingItem text="Enlace único y compartible" />
-                                </ul>
-                                <button className="w-full py-3.5 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-xl font-bold hover:from-rose-600 hover:to-rose-700 shadow-lg shadow-rose-200/60 transition-all duration-300 transform group-hover:scale-[1.02] flex items-center justify-center gap-2">
-                                    Elegir Premium <ArrowRight size={16} />
-                                </button>
-                                <p className="text-center text-xs text-slate-400 mt-3">🔒 Pago seguro • Satisfacción garantizada</p>
-                            </div>
-                        </div>
-
-                        {/* --- Plan A Medida --- */}
-                        <div className="group border border-slate-200 rounded-3xl p-8 hover:shadow-2xl hover:border-slate-300 transition-all duration-500 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden">
-                            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-slate-100 to-transparent rounded-tr-full pointer-events-none"></div>
-                            <div className="relative z-10">
-                                <div className="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center mb-5">
-                                    <Star className="text-amber-500 fill-amber-500" size={22} />
-                                </div>
-                                <h3 className="text-xl font-bold text-slate-900 mb-1">A Medida</h3>
-                                <p className="text-sm text-slate-400 mb-5">Para quienes quieren lo mejor</p>
-                                <div className="mb-6">
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-lg text-slate-400">Desde</span>
-                                        <span className="text-5xl font-bold text-slate-900">$1,500</span>
-                                        <span className="text-slate-400">MXN</span>
+                        {/* Right side - Form */}
+                        <div className="w-full lg:w-1/2">
+                            <div className="bg-slate-50 p-8 md:p-10 rounded-2xl border border-slate-100 shadow-sm">
+                                <form className="space-y-6">
+                                    <div>
+                                        <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Nombre</label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            placeholder="Tu nombre completo"
+                                            className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:border-transparent transition-all outline-none text-slate-900 placeholder:text-slate-400"
+                                        />
                                     </div>
-                                    <p className="text-xs text-slate-400 mt-1">precio varía según complejidad</p>
-                                </div>
-                                <ul className="space-y-3.5 mb-8">
-                                    <PricingItem text="Diseño 100% único y exclusivo" />
-                                    <PricingItem text="Dominio propio (.com)" />
-                                    <PricingItem text="Animaciones y efectos avanzados" />
-                                    <PricingItem text="Hosting anual incluido" />
-                                    <PricingItem text="Soporte prioritario por WhatsApp" />
-                                    <PricingItem text="Funciones personalizadas a tu evento" />
-                                    <PricingItem text="Galería ilimitada de fotos" />
-                                </ul>
-                                <button className="w-full py-3.5 border-2 border-slate-800 text-slate-800 rounded-xl font-bold hover:bg-slate-800 hover:text-white transition-all duration-300 transform group-hover:scale-[1.02] flex items-center justify-center gap-2">
-                                    <Mail size={16} /> Contactar por WhatsApp
-                                </button>
+                                    <div>
+                                        <label htmlFor="event-type" className="block text-sm font-medium text-slate-700 mb-2">Tipo de Evento</label>
+                                        <select
+                                            id="event-type"
+                                            name="event-type"
+                                            defaultValue=""
+                                            className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:border-transparent transition-all outline-none text-slate-900 appearance-none"
+                                        >
+                                            <option value="" disabled>Selecciona una opción</option>
+                                            <option value="boda">Boda</option>
+                                            <option value="xv">XV Años</option>
+                                            <option value="bautizo">Bautizo / Baby Shower</option>
+                                            <option value="cumple">Cumpleaños</option>
+                                            <option value="otro">Otro Evento</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Mensaje</label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            rows="4"
+                                            placeholder="¿Cómo podemos ayudarte?"
+                                            className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:border-transparent transition-all outline-none text-slate-900 placeholder:text-slate-400 resize-none"
+                                        ></textarea>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        className="w-full py-4 bg-rose-500 text-white rounded-xl font-bold hover:bg-rose-600 transition-all shadow-lg shadow-rose-200/60 flex items-center justify-center gap-3 group"
+                                    >
+                                        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.394 0 12.03c0 2.122.554 4.197 1.604 6.046L0 24l6.105-1.602a11.83 11.83 0 005.94 1.586h.005c6.635 0 12.032-5.394 12.034-12.03a11.758 11.758 0 00-3.517-8.403z" />
+                                        </svg>
+                                        <span>Enviar por WhatsApp</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </section>
 
@@ -324,8 +275,8 @@ const LandingPageContent = () => {
                     <div>
                         <h4 className="font-bold text-white mb-4">Producto</h4>
                         <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="hover:text-rose-400">Plantillas</a></li>
-                            <li><a href="#" className="hover:text-rose-400">Precios</a></li>
+                            <li><a href="#demo" className="hover:text-rose-400">Plantillas</a></li>
+                            <li><a href="#contact" className="hover:text-rose-400">Contacto</a></li>
                             <li><a href="#" className="hover:text-rose-400">Ejemplos Reales</a></li>
                         </ul>
                     </div>
@@ -370,13 +321,6 @@ const FeatureCard = ({ icon, title, desc }) => (
     </div>
 );
 
-const PricingItem = ({ text, crossed }) => (
-    <li className={`flex items-center gap-3 ${crossed ? 'opacity-50 line-through' : ''}`}>
-        <div className={`p-1 rounded-full ${crossed ? 'bg-slate-200' : 'bg-rose-100'}`}>
-            {crossed ? <X size={12} className="text-slate-500" /> : <Check size={12} className="text-rose-500" />}
-        </div>
-        <span className="text-sm font-medium text-slate-700">{text}</span>
-    </li>
-);
+
 
 export default LandingPageContent;
