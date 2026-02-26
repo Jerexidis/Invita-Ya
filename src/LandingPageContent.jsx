@@ -65,7 +65,7 @@ const LandingPageContent = () => {
                 {isMenuOpen && (
                     <div className="md:hidden bg-white border-t border-invita-cream p-4 shadow-lg absolute w-full">
                         <div className="flex flex-col space-y-4">
-                            <a href="#features" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Características</a>
+                            <a href="#features" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Contenido</a>
                             <a href="#demo" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Ejemplos</a>
                             <a href="#contact" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Contacto</a>
                         </div>
@@ -96,7 +96,7 @@ const LandingPageContent = () => {
 
                     <div className="w-full md:w-1/2 relative mt-8 md:mt-0">
                         <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-rose-100 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
-                        
+
                         <div className="flex items-end justify-center scale-100 sm:scale-110 md:scale-100 lg:scale-[1.35] origin-bottom">
                             {/* Desktop / Laptop mockup */}
                             <div className="relative z-10 w-full bg-gray-500 rounded-lg sm:rounded-xl shadow-2xl border border-gray-600 overflow-hidden">
