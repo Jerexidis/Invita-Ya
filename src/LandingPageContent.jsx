@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Smartphone, Heart, MousePointer, Globe, Check, Star, Menu, X, ArrowRight, Mail, Send } from 'lucide-react';
+import mockWeb from './assets/mocks/Web.png';
+import mockMovil from './assets/mocks/movil.PNG';
 
 const LandingPageContent = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,31 +69,51 @@ const LandingPageContent = () => {
                                 Ver Ejemplos <ArrowRight size={18} />
                             </button>
                         </div>
-                        <div className="pt-4 flex items-center justify-center md:justify-start gap-4 text-sm text-slate-500">
-                            <div className="flex -space-x-2">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Cliente" className="w-8 h-8 rounded-full border-2 border-white object-cover" />
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Cliente" className="w-8 h-8 rounded-full border-2 border-white object-cover" />
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Cliente" className="w-8 h-8 rounded-full border-2 border-white object-cover" />
-                            </div>
-                            <p>+500 parejas felices</p>
-                        </div>
                     </div>
 
-                    <div className="md:w-1/2 relative">
+                    <div className="w-full md:w-1/2 relative mt-8 md:mt-0">
                         <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-rose-100 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
-                        <img
-                            src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2070&auto=format&fit=crop"
-                            alt="Vista previa invitacion en movil"
-                            className="relative z-10 w-full rounded-2xl shadow-2xl border-8 border-white transform md:rotate-2 hover:rotate-0 transition-transform duration-500"
-                        />
-                        {/* Floating Badge */}
-                        <div className="absolute -bottom-6 -left-6 z-20 bg-white p-4 rounded-xl shadow-lg flex items-center gap-3 animate-bounce-slow">
-                            <div className="bg-green-100 p-2 rounded-full">
-                                <Check size={20} className="text-green-600" />
+                        
+                        <div className="flex items-end justify-center scale-100 sm:scale-110 md:scale-100 lg:scale-[1.35] origin-bottom">
+                            {/* Desktop / Laptop mockup */}
+                            <div className="relative z-10 w-full bg-gray-500 rounded-lg sm:rounded-xl shadow-2xl border border-gray-600 overflow-hidden">
+                                {/* Browser top bar */}
+                                <div className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 bg-gray-600">
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-400"></span>
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-400"></span>
+                                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-400"></span>
+                                    <span className="ml-2 sm:ml-3 flex-1 bg-gray-400 rounded-md h-4 sm:h-5 text-[8px] sm:text-[10px] text-gray-200 flex items-center px-1.5 sm:px-2">invita-ya.com</span>
+                                </div>
+                                <img
+                                    src={mockWeb}
+                                    alt="Vista web de invitación"
+                                    className="w-full object-cover object-top"
+                                />
+                            </div>
+
+                            {/* Mobile mockup - overlapping the desktop */}
+                            <div className="relative z-20 -ml-6 sm:-ml-8 md:-ml-10 mb-0 w-[15%] min-w-[50px] bg-gray-500 rounded-[0.4rem] sm:rounded-[0.6rem] shadow-2xl border-2 border-gray-500 overflow-hidden scale-y-[1.15] origin-bottom">
+                                {/* Phone notch */}
+                                <div className="flex justify-center py-0.5 bg-gray-500 shrink-0">
+                                    <div className="w-8 sm:w-12 h-0.5 sm:h-1 bg-gray-600 rounded-full"></div>
+                                </div>
+                                <img
+                                    src={mockMovil}
+                                    alt="Vista móvil de invitación"
+                                    className="w-full block"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Floating Badge - outside scaled container */}
+                        <div className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 z-30 bg-white p-3 sm:p-4 rounded-xl shadow-lg flex items-center gap-2 sm:gap-3 animate-bounce-slow">
+                            <div className="bg-green-100 p-1.5 sm:p-2 rounded-full">
+                                <Check size={16} className="text-green-600 sm:hidden" />
+                                <Check size={20} className="text-green-600 hidden sm:block" />
                             </div>
                             <div>
-                                <p className="font-bold text-slate-800">RSVP Recibido</p>
-                                <p className="text-xs text-slate-500">hace 2 minutos</p>
+                                <p className="font-bold text-slate-800 text-sm sm:text-base">RSVP Recibido</p>
+                                <p className="text-[10px] sm:text-xs text-slate-500">hace 2 minutos</p>
                             </div>
                         </div>
                     </div>
