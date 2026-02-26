@@ -90,7 +90,7 @@ const LandingPageContent = () => {
                     </div>
 
                     <div className="md:w-1/2 relative">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-invita-rosa/40 to-invita-cream rounded-full blur-3xl opacity-40 transform translate-x-10 translate-y-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-rose-100 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
                         <img
                             src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2070&auto=format&fit=crop"
                             alt="Vista previa invitacion en movil"
@@ -102,8 +102,8 @@ const LandingPageContent = () => {
                                 <Check size={20} className="text-green-600" />
                             </div>
                             <div>
-                                <p className="font-bold text-invita-dark">RSVP Recibido</p>
-                                <p className="text-xs text-invita-gray">hace 2 minutos</p>
+                                <p className="font-bold text-slate-800">RSVP Recibido</p>
+                                <p className="text-xs text-slate-500">hace 2 minutos</p>
                             </div>
                         </div>
                     </div>
