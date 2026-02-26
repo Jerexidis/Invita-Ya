@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Smartphone, Heart, MousePointer, Globe, Check, Star, Menu, X, ArrowRight, Mail, Send } from 'lucide-react';
+import { Smartphone, MousePointer, Globe, Check, Star, Menu, X, ArrowRight, Mail, Send } from 'lucide-react';
 
 const LandingPageContent = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
