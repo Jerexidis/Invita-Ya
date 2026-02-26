@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, MapPin, Clock, Gift, ChevronDown, Send, CheckCircle, Crown, Sparkles, Church, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Calendar, MapPin, Clock, Gift, ChevronDown, Send, CheckCircle, Crown, Sparkles, Church, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 
 const InvitacionXV = () => {
+    const navigate = useNavigate();
     const [timeLeft, setTimeLeft] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
     const eventDate = new Date("2026-08-15T20:00:00").getTime();
 
@@ -47,6 +49,15 @@ const InvitacionXV = () => {
 
     return (
         <div className="min-h-screen bg-xv-cream text-xv-text font-montserrat selection:bg-xv-accent/30">
+
+            {/* --- BOTÓN VOLVER --- */}
+            <button
+                onClick={() => navigate('/')}
+                className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2.5 bg-white/90 backdrop-blur-md text-sm font-medium text-slate-700 rounded-full shadow-lg border border-slate-200/60 hover:bg-white hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+            >
+                <ArrowLeft size={16} />
+                <span>Volver al inicio</span>
+            </button>
 
             {/* --- HERO SECTION --- */}
             <header className="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">

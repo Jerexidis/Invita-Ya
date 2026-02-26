@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Star, Gift, CheckCircle, Send } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Star, Gift, CheckCircle, Send, ArrowLeft } from 'lucide-react';
 
 const InvitacionBautizo = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({ name: '', guests: 1 });
     const [rsvpStatus, setRsvpStatus] = useState('idle');
 
@@ -41,6 +43,15 @@ const InvitacionBautizo = () => {
 
     return (
         <div className="min-h-screen bg-bautizo-cream text-bautizo-text font-montserrat selection:bg-bautizo-accent/30">
+
+            {/* --- BOTÓN VOLVER --- */}
+            <button
+                onClick={() => navigate('/')}
+                className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2.5 bg-white/90 backdrop-blur-md text-sm font-medium text-slate-700 rounded-full shadow-lg border border-slate-200/60 hover:bg-white hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+            >
+                <ArrowLeft size={16} />
+                <span>Volver al inicio</span>
+            </button>
 
             {/* --- HERO SECTION --- */}
             <header className="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
