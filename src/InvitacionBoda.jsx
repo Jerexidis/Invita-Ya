@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 
 const InvitacionBoda = () => {
-  const navigate = useNavigate();
   // --- Countdown ---
   const [timeLeft, setTimeLeft] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
   const eventDate = new Date("2026-12-31T18:00:00").getTime();
