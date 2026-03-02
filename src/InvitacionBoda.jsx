@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Heart,
   Calendar,
@@ -13,6 +13,7 @@ import {
 
 const InvitacionBoda = () => {
   // --- Countdown ---
+  const stackRef = useRef(null);
   const [timeLeft, setTimeLeft] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
   const eventDate = new Date("2026-12-31T18:00:00").getTime();
 
@@ -115,10 +116,10 @@ const InvitacionBoda = () => {
             Solo faltan...
           </h2>
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
-            <CountdownItem value={timeLeft.dias} label="Días" />
-            <CountdownItem value={timeLeft.horas} label="Horas" />
-            <CountdownItem value={timeLeft.minutos} label="Min" />
-            <CountdownItem value={timeLeft.segundos} label="Seg" />
+            <CountdownCircle value={timeLeft.dias} label="Días" />
+            <CountdownCircle value={timeLeft.horas} label="Horas" />
+            <CountdownCircle value={timeLeft.minutos} label="Min" />
+            <CountdownCircle value={timeLeft.segundos} label="Seg" />
           </div>
         </div>
       </section>
