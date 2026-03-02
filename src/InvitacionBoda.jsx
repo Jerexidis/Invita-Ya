@@ -110,9 +110,9 @@ const InvitacionBoda = () => {
       </header>
 
       {/* --- CUENTA REGRESIVA --- */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-boda-cream">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-serif text-slate-700 mb-12">
+          <h2 className="text-3xl font-vibes text-boda-primary mb-12">
             Solo faltan...
           </h2>
           <div className="flex flex-wrap justify-center gap-8 md:gap-16">
@@ -125,24 +125,24 @@ const InvitacionBoda = () => {
       </section>
 
       {/* --- DETALLES DEL EVENTO --- */}
-      <section className="py-24 bg-[#F7F5F2] px-4">
+      <section className="py-24 bg-white px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           <DetailCard
-            icon={<Calendar className="w-8 h-8 text-rose-400" />}
+            icon={<Calendar className="w-8 h-8 text-boda-primary" />}
             title="¿Cuándo?"
             content="Jueves, 31 de Diciembre"
             subContent="2026"
           />
 
           <DetailCard
-            icon={<Clock className="w-8 h-8 text-rose-400" />}
+            icon={<Clock className="w-8 h-8 text-boda-primary" />}
             title="Hora"
             content="Ceremonia: 5:00 PM"
             subContent="Recepción: 7:00 PM"
           />
 
           <DetailCard
-            icon={<MapPin className="w-8 h-8 text-rose-400" />}
+            icon={<MapPin className="w-8 h-8 text-boda-primary" />}
             title="¿Dónde?"
             content="Hacienda Las Flores"
             subContent="Carretera Nacional, Km 25"
@@ -156,28 +156,28 @@ const InvitacionBoda = () => {
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
           <div className="bg-boda-cream p-8 rounded-2xl border border-boda-accent/20 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
             <div className="flex justify-center mb-4">
-              <span className="p-3 bg-rose-50 rounded-full">
-                <Gift className="w-6 h-6 text-rose-400" />
+              <span className="p-3 bg-boda-light rounded-full">
+                <Gift className="w-6 h-6 text-boda-primary" />
               </span>
             </div>
-            <h3 className="text-2xl font-serif mb-4">Mesa de Regalos</h3>
-            <p className="text-slate-600 mb-4">
+            <h3 className="text-2xl font-vibes text-boda-dark mb-4">Mesa de Regalos</h3>
+            <p className="text-boda-text mb-4">
               Su presencia es nuestro mejor regalo. Si desean tener un detalle,
               pueden consultar nuestras opciones.
             </p>
-            <button className="text-rose-500 font-medium hover:text-rose-600 underline decoration-rose-200 decoration-2 underline-offset-4">
+            <button className="text-boda-primary font-medium hover:text-boda-dark underline decoration-boda-accent decoration-2 underline-offset-4">
               Ver sugerencias
             </button>
           </div>
 
           <div className="bg-boda-cream p-8 rounded-2xl border border-boda-accent/20 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
             <div className="flex justify-center mb-4">
-              <span className="p-3 bg-rose-50 rounded-full">
-                <Shirt className="w-6 h-6 text-rose-400" />
+              <span className="p-3 bg-boda-light rounded-full">
+                <Shirt className="w-6 h-6 text-boda-primary" />
               </span>
             </div>
-            <h3 className="text-2xl font-serif mb-4">Código de Vestimenta</h3>
-            <p className="text-slate-600">
+            <h3 className="text-2xl font-vibes text-boda-dark mb-4">Código de Vestimenta</h3>
+            <p className="text-boda-text">
               <strong>Etiqueta Rigurosa</strong>
               <br />
               Hombres: Smoking o Traje Oscuro
@@ -219,7 +219,7 @@ const InvitacionBoda = () => {
       {/* --- FORMULARIO RSVP --- */}
       <section
         id="rsvp-section"
-        className="py-24 px-4 bg-slate-900 text-white relative overflow-hidden"
+        className="py-24 px-4 bg-boda-dark text-white relative overflow-hidden"
       >
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
@@ -227,8 +227,8 @@ const InvitacionBoda = () => {
 
         <div className="max-w-lg mx-auto relative z-10 bg-white/5 backdrop-blur-sm p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
           <div className="text-center mb-8">
-            <Heart className="w-10 h-10 text-rose-400 mx-auto mb-4 animate-pulse" />
-            <h2 className="text-4xl font-serif mb-2">RSVP</h2>
+            <Heart className="w-10 h-10 text-boda-accent mx-auto mb-4 animate-pulse" />
+            <h2 className="text-4xl font-vibes mb-2">RSVP</h2>
             <p className="text-slate-300">
               Por favor confirma tu asistencia antes del 1 de Diciembre
             </p>
@@ -236,16 +236,16 @@ const InvitacionBoda = () => {
 
           {rsvpStatus === "success" ? (
             <div className="text-center py-12 animate-fade-in">
-              <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-              <h3 className="text-2xl font-serif mb-2">
+              <CheckCircle className="w-16 h-16 text-boda-accent mx-auto mb-4" />
+              <h3 className="text-2xl font-vibes mb-2">
                 ¡Confirmación Recibida!
               </h3>
-              <p className="text-slate-300">
+              <p className="text-boda-light/80">
                 Gracias por acompañarnos en este día especial.
               </p>
               <button
                 onClick={() => setRsvpStatus("idle")}
-                className="mt-6 text-sm text-rose-300 hover:text-rose-200 underline"
+                className="mt-6 text-sm text-boda-accent hover:text-boda-light underline"
               >
                 Enviar otra respuesta
               </button>
@@ -291,7 +291,7 @@ const InvitacionBoda = () => {
               <button
                 type="submit"
                 disabled={rsvpStatus === "submitting"}
-                className="w-full py-4 bg-rose-500 hover:bg-rose-600 text-white rounded-lg font-medium tracking-wide transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-4 bg-boda-primary hover:bg-boda-dark text-white rounded-lg font-medium tracking-wide transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {rsvpStatus === "submitting" ? (
                   <>Enviando...</>
@@ -327,12 +327,12 @@ const Divider = () => (
 
 const CountdownCircle = ({ value, label }) => (
   <div className="flex flex-col items-center">
-    <div className="w-16 h-16 md:w-20 md:h-20 bg-rose-50 rounded-lg flex items-center justify-center border border-rose-100 shadow-sm mb-3">
-      <span className="text-2xl md:text-3xl font-serif text-rose-500 font-medium">
+    <div className="w-16 h-16 md:w-20 md:h-20 bg-boda-light rounded-lg flex items-center justify-center border border-boda-accent/30 shadow-sm mb-3">
+      <span className="text-2xl md:text-3xl font-vibes text-boda-primary font-medium">
         {String(value).padStart(2, "0")}
       </span>
     </div>
-    <span className="text-xs uppercase tracking-widest text-slate-500 font-medium">
+    <span className="text-xs uppercase tracking-widest text-boda-gray font-medium">
       {label}
     </span>
   </div>
@@ -349,7 +349,7 @@ const DetailCard = ({ icon, title, content, subContent, link }) => (
     {link && (
       <a
         href={link}
-        className="mt-4 text-sm text-rose-500 font-medium border-b border-rose-300 pb-0.5 hover:text-rose-600"
+        className="mt-4 text-sm text-boda-primary font-medium border-b border-boda-accent pb-0.5 hover:text-boda-dark"
       >
         Ver en mapa
       </a>
