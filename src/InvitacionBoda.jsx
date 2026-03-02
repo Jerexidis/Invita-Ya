@@ -327,7 +327,7 @@ const Divider = () => (
 
 const CountdownCircle = ({ value, label }) => (
   <div className="flex flex-col items-center">
-    <div className="w-16 h-16 md:w-20 md:h-20 bg-boda-light rounded-lg flex items-center justify-center border border-boda-accent/30 shadow-sm mb-3">
+    <div className="w-16 h-16 md:w-20 md:h-20 bg-boda-light rounded-full flex items-center justify-center border border-boda-accent/30 shadow-sm mb-3">
       <span className="text-2xl md:text-3xl font-vibes text-boda-primary font-medium">
         {String(value).padStart(2, "0")}
       </span>
