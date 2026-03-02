@@ -12,15 +12,9 @@ import {
 } from "lucide-react";
 
 const InvitacionBoda = () => {
-  // --- Estado para la Cuenta Regresiva ---
-  const [timeLeft, setTimeLeft] = useState({
-    dias: 0,
-    horas: 0,
-    minutos: 0,
-    segundos: 0,
-  });
-
-  // FECHA DEL EVENTO
+  const navigate = useNavigate();
+  // --- Countdown ---
+  const [timeLeft, setTimeLeft] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
   const eventDate = new Date("2026-12-31T18:00:00").getTime();
 
   useEffect(() => {
@@ -41,7 +35,6 @@ const InvitacionBoda = () => {
         });
       }
     }, 1000);
-
     return () => clearInterval(timer);
   }, [eventDate]);
 
@@ -84,16 +77,16 @@ const InvitacionBoda = () => {
                 "url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=2070&auto=format&fit=crop')",
             }}
           />
-          <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FDFBF7]" />
+          <div className="absolute inset-0 bg-boda-dark/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-boda-cream" />
         </div>
 
         <div className="relative z-10 text-white space-y-6 animate-fade-in-up">
-          <p className="text-lg md:text-xl tracking-[0.2em] uppercase font-light opacity-90">
+          <p className="text-lg md:text-xl tracking-[0.25em] uppercase font-light opacity-90">
             ¡Nos Casamos!
           </p>
-          <h1 className="text-6xl md:text-8xl font-serif tracking-tight drop-shadow-lg">
-            Sofia &amp; Mateo
+          <h1 className="text-6xl md:text-8xl font-vibes tracking-wide drop-shadow-lg">
+            Sofia & Mateo
           </h1>
           <div className="flex items-center justify-center gap-4 text-lg md:text-2xl font-light mt-4">
             <span>31</span>
@@ -105,7 +98,7 @@ const InvitacionBoda = () => {
 
           <button
             onClick={scrollToRSVP}
-            className="mt-12 px-8 py-3 bg-white/10 backdrop-blur-md border border-white/40 rounded-full text-white hover:bg-white hover:text-slate-900 transition-all duration-300 transform hover:scale-105"
+            className="mt-12 px-8 py-3 bg-white/10 backdrop-blur-md border border-white/40 rounded-full text-white hover:bg-white hover:text-boda-dark transition-all duration-300 transform hover:scale-105"
           >
             Confirmar Asistencia
           </button>
@@ -158,10 +151,10 @@ const InvitacionBoda = () => {
         </div>
       </section>
 
-      {/* --- CODIGO DE VESTIMENTA & REGALOS --- */}
+      {/* --- DRESS CODE & REGALOS --- */}
       <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-          <div className="bg-[#FDFBF7] p-8 rounded-2xl border border-stone-100 text-center shadow-sm">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+          <div className="bg-boda-cream p-8 rounded-2xl border border-boda-accent/20 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
             <div className="flex justify-center mb-4">
               <span className="p-3 bg-rose-50 rounded-full">
                 <Gift className="w-6 h-6 text-rose-400" />
@@ -177,7 +170,7 @@ const InvitacionBoda = () => {
             </button>
           </div>
 
-          <div className="bg-[#FDFBF7] p-8 rounded-2xl border border-stone-100 text-center shadow-sm">
+          <div className="bg-boda-cream p-8 rounded-2xl border border-boda-accent/20 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
             <div className="flex justify-center mb-4">
               <span className="p-3 bg-rose-50 rounded-full">
                 <Shirt className="w-6 h-6 text-rose-400" />
@@ -191,6 +184,34 @@ const InvitacionBoda = () => {
               <br />
               Mujeres: Vestido Largo
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- GALERÍA POLAROID --- */}
+      <section className="py-24 bg-boda-cream overflow-hidden">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-vibes text-boda-primary mb-4">Nuestra Historia</h2>
+          <Divider />
+        </div>
+        <div className="polaroid-stack-container">
+          <div className="polaroid-stack" ref={stackRef}>
+            <div className="polaroid-card">
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop" alt="Foto 1" />
+              <p className="caption">El inicio</p>
+            </div>
+            <div className="polaroid-card">
+              <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=800&auto=format&fit=crop" alt="Foto 2" />
+              <p className="caption">Nuestro viaje</p>
+            </div>
+            <div className="polaroid-card">
+              <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=800&auto=format&fit=crop" alt="Foto 3" />
+              <p className="caption">¡Sí, quiero!</p>
+            </div>
+            <div className="polaroid-card">
+              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800&auto=format&fit=crop" alt="Foto 4" />
+              <p className="caption">Para siempre</p>
+            </div>
           </div>
         </div>
       </section>
@@ -236,25 +257,19 @@ const InvitacionBoda = () => {
                   Nombre Completo
                 </label>
                 <input
-                  type="text"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-rose-400 focus:ring-1 focus:ring-rose-400 text-white placeholder-slate-500 transition-colors"
+                  type="text" name="name" required
+                  value={formData.name} onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-boda-accent focus:ring-1 focus:ring-boda-accent text-white placeholder-white/30 transition-colors"
                   placeholder="Ej. Juan Pérez"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1">
                   Número de Adultos
                 </label>
                 <select
-                  name="guests"
-                  value={formData.guests}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-rose-400 focus:ring-1 focus:ring-rose-400 text-white [&>option]:text-slate-900 transition-colors"
+                  name="guests" value={formData.guests} onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-boda-accent focus:ring-1 focus:ring-boda-accent text-white [&>option]:text-boda-dark transition-colors"
                 >
                   {[1, 2, 3, 4, 5].map((num) => (
                     <option key={num} value={num}>
@@ -263,21 +278,16 @@ const InvitacionBoda = () => {
                   ))}
                 </select>
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1">
                   Mensaje (Opcional)
                 </label>
                 <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows="3"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-rose-400 focus:ring-1 focus:ring-rose-400 text-white placeholder-slate-500 transition-colors"
+                  name="message" value={formData.message} onChange={handleInputChange} rows="3"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-boda-accent focus:ring-1 focus:ring-boda-accent text-white placeholder-white/30 transition-colors"
                   placeholder="¿Alguna alergia alimentaria?"
                 ></textarea>
               </div>
-
               <button
                 type="submit"
                 disabled={rsvpStatus === "submitting"}
@@ -297,9 +307,9 @@ const InvitacionBoda = () => {
       </section>
 
       {/* --- FOOTER --- */}
-      <footer className="py-12 text-center bg-[#FDFBF7] text-slate-500 text-sm">
-        <p className="font-serif italic text-lg mb-2">Sofia & Mateo</p>
-        <p>Te esperamos con mucha ilusión.</p>
+      <footer className="py-12 text-center bg-boda-cream border-t border-boda-accent/20">
+        <p className="font-vibes text-2xl text-boda-primary mb-2">Sofia & Mateo</p>
+        <p className="text-boda-gray text-sm">Te esperamos con mucha ilusión.</p>
       </footer>
     </div>
   );
@@ -307,7 +317,15 @@ const InvitacionBoda = () => {
 
 // --- Subcomponentes ---
 
-const CountdownItem = ({ value, label }) => (
+const Divider = () => (
+  <div className="flex items-center justify-center gap-3">
+    <span className="h-px w-12 bg-boda-accent/40"></span>
+    <span className="w-2 h-2 rounded-full bg-boda-primary/40"></span>
+    <span className="h-px w-12 bg-boda-accent/40"></span>
+  </div>
+);
+
+const CountdownCircle = ({ value, label }) => (
   <div className="flex flex-col items-center">
     <div className="w-16 h-16 md:w-20 md:h-20 bg-rose-50 rounded-lg flex items-center justify-center border border-rose-100 shadow-sm mb-3">
       <span className="text-2xl md:text-3xl font-serif text-rose-500 font-medium">
@@ -321,13 +339,13 @@ const CountdownItem = ({ value, label }) => (
 );
 
 const DetailCard = ({ icon, title, content, subContent, link }) => (
-  <div className="flex flex-col items-center p-6 transition-transform hover:-translate-y-1 duration-300">
-    <div className="mb-6 p-4 bg-white rounded-full shadow-sm border border-stone-100">
+  <div className="flex flex-col items-center p-6 bg-white rounded-2xl border border-boda-accent/15 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+    <div className="mb-5 p-4 bg-boda-light rounded-full">
       {icon}
     </div>
-    <h3 className="text-xl font-serif text-slate-800 mb-3">{title}</h3>
-    <p className="text-slate-600 font-medium">{content}</p>
-    {subContent && <p className="text-slate-500">{subContent}</p>}
+    <h3 className="text-xl font-vibes text-boda-dark mb-3">{title}</h3>
+    <p className="text-boda-text font-medium">{content}</p>
+    {subContent && <p className="text-boda-gray">{subContent}</p>}
     {link && (
       <a
         href={link}
