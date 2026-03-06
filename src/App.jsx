@@ -7,6 +7,8 @@ import InvitacionBoda from "./InvitacionBoda";
 import InvitacionXV from "./InvitacionXV";
 import InvitacionBautizo from "./InvitacionBautizo";
 
+import Aguachiles from "./Aguachiles";
+
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -29,6 +31,8 @@ function App() {
       <Route path="/demo/boda" element={<InvitacionBoda />} />
       <Route path="/demo/xv" element={<InvitacionXV />} />
       <Route path="/demo/bautizo" element={<InvitacionBautizo />} />
+
+      <Route path="/eventos/aguachiles" element={<Aguachiles />} />
 
       {/* Invitación real - descomentar cuando el componente esté listo */}
       {/* <Route path="/invitacion/ana-y-luis" element={<InvitacionReal />} /> */}
