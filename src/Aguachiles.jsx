@@ -161,6 +161,28 @@ const globalStyle = `
   .ag-wa-btn:hover  { transform:scale(1.03); box-shadow:0 10px 28px rgba(37,211,102,.55); }
   .ag-wa-btn:active { transform:scale(0.97); }
 
+  /* Grid detalles + mapa*/
+  .ag-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+  }
+  .ag-map-wrap {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,.25);
+    display: flex;
+    align-self: stretch;
+  }
+  .ag-map-wrap iframe { width:100%; height:100%; border:0; display:block; min-height:320px; }
+
+  @media (max-width: 700px) {
+    .ag-detail-grid { grid-template-columns: 1fr; }
+    .ag-map-wrap { height: 260px; }
+    .ag-map-wrap iframe { min-height: 260px; }
+  }
+
   /* Responsive map+footer grid */
   .ag-bottom-grid {
     display: grid;
@@ -430,7 +452,7 @@ const Aguachiles = () => {
             </div>
 
             {/* Cards + Mapa lado a lado */}
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:32, alignItems:"stretch" }}>
+            <div className="ag-detail-grid">
               {/* Cards stacked */}
               <div style={{ display:"flex", flexDirection:"column", gap:20 }}>
                 <DetailCard
@@ -445,12 +467,11 @@ const Aguachiles = () => {
                 />
               </div>
 
-            {/* Mapa */}
-              <div style={{ borderRadius:18, overflow:"hidden", boxShadow:"0 6px 24px rgba(0,0,0,.12)", alignSelf:"stretch", display:"flex" }}>
+              {/* Mapa */}
+              <div className="ag-map-wrap">
                 <iframe
                   title="Ubicación del negocio"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.2!2d-106.4111!3d23.2494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869f53aaf176e38d%3A0x17e4f3f5e2db0b3d!2sBlvd.%20del%20Mar%2C%20Mazatl%C3%A1n%2C%20Sin.!5e0!3m2!1ses!2smx!4v1700000000000"
-                  style={{ width:"100%", height:"100%", border:0, display:"block", minHeight:300 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
