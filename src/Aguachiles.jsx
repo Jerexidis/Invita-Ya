@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { MapPin, Clock, ChevronDown, Flame, Star, MessageCircle } from "lucide-react";
 
 import bgImg from "./assets/aguachiles/fondo.png";
@@ -331,6 +332,31 @@ const Aguachiles = () => {
       <style>{globalStyle}</style>
       <div className="ag-page">
 
+        {/* ── BOTÓN VOLVER (sutil, esquina superior izq) ── */}
+        <Link
+          to="/"
+          style={{
+            position:"fixed", top:16, left:16, zIndex:999,
+            display:"inline-flex", alignItems:"center", gap:6,
+            padding:"7px 14px",
+            background:"rgba(0,0,0,0.45)",
+            backdropFilter:"blur(8px)",
+            border:"1px solid rgba(255,255,255,0.15)",
+            borderRadius:999,
+            color:"rgba(255,255,255,0.75)",
+            fontSize:12,
+            fontFamily:"'Nunito',sans-serif",
+            fontWeight:700,
+            letterSpacing:"0.05em",
+            textDecoration:"none",
+            transition:"background 0.2s, color 0.2s",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background="rgba(255,255,255,0.18)"; e.currentTarget.style.color="#fff"; }}
+          onMouseLeave={e => { e.currentTarget.style.background="rgba(0,0,0,0.45)"; e.currentTarget.style.color="rgba(255,255,255,0.75)"; }}
+        >
+          ← Invita-Ya
+        </Link>
+
         {/* ── HERO ─────────────────────────────── */}
         <header style={{ position:"relative", height:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center", overflow:"hidden" }}>
           <div style={{ position:"absolute", inset:0 }}>
@@ -524,6 +550,11 @@ const Aguachiles = () => {
             <span style={{ color:"rgba(255,255,255,.35)", fontSize:12 }}>Frescura · Sabor · Calle</span>
             <Flame size={18} color={C.orange} className="ag-flame" />
           </div>
+
+          {/* Crédito Invita-Ya */}
+          <p style={{ color:"rgba(255,255,255,.18)", fontSize:11, marginTop:16, letterSpacing:"0.05em" }}>
+            Hecho con <Link to="/" style={{ color:"rgba(255,255,255,.30)", textDecoration:"none", fontWeight:700 }}>Invita-Ya</Link>
+          </p>
         </footer>
 
       </div>
