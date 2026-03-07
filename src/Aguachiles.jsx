@@ -309,7 +309,7 @@ const WaForm = () => {
       <textarea
         className="ag-input"
         rows={4}
-        placeholder="Ej: Hola! ¿A qué hora abren el 19 de abril?"
+        placeholder="Hola! Quisiera pedir 2 charolas de aguachiles y 3 vasos preparados"
         value={msg}
         onChange={e => setMsg(e.target.value)}
         style={{ resize:"vertical" }}
