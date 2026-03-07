@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { MapPin, Clock, ChevronDown, Flame, Star, MessageCircle } from "lucide-react";
 
 import bgImg from "./assets/aguachiles/fondo.png";
-import camaronImg from "./assets/aguachiles/camaron.png";
-import cervezaImg from "./assets/aguachiles/cerveza.png";
-import platoImg from "./assets/aguachiles/plato.png";
+import camaronImg from "./assets/aguachiles/Charolas.png";
+import cervezaImg from "./assets/aguachiles/vaso.png";
+import platoImg from "./assets/aguachiles/Tostitos.png";
 
 /* ─── Paleta de marca ───────────────────────────────── */
 const C = {
@@ -292,7 +292,7 @@ const DetailCard = ({ icon, title, lines }) => (
 /* ─── Formulario WhatsApp ────────────────────────── */
 const WaForm = () => {
   const [msg, setMsg] = useState("");
-  const phone = "526691234567"; // ← cambia por tu número (con código de país, sin +)
+  const phone = "524495378450"; // ← cambia por tu número (con código de país, sin +)
 
   const sendWa = (e) => {
     e.preventDefault();
@@ -324,7 +324,7 @@ const WaForm = () => {
 
 /* ─── Componente principal ───────────────────────── */
 const Aguachiles = () => {
-  const INAUGURATION = "2026-04-19T13:00:00";
+  const INAUGURATION = "2026-03-08T10:00:00";
   const t = useCountdown(INAUGURATION);
 
   return (
@@ -382,7 +382,7 @@ const Aguachiles = () => {
 
             <div className="ag-fade-up3" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:16, marginBottom:44 }}>
               <span style={{ height:1, width:36, background:C.yellow }} />
-              <span className="ag-title" style={{ color:C.yellow, fontSize:17, letterSpacing:"0.15em" }}>19 · ABRIL · 2026</span>
+              <span className="ag-title" style={{ color:C.yellow, fontSize:17, letterSpacing:"0.15em" }}>8 · MARZO · 2026</span>
               <span style={{ height:1, width:36, background:C.yellow }} />
             </div>
 
@@ -444,22 +444,22 @@ const Aguachiles = () => {
 
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))", gap:28 }}>
               <MenuCard
-                img={camaronImg}
-                name="Aguachiles Negros"
-                desc="Camarones frescos en salsa negra de chile pasilla, limón y especias. ¡Bien picosos!"
-                price="$120"
+                img={platoImg}
+                name="Tostitos"
+                desc="Tostitos crujientes acompañados de aguachile fresco. La botana perfecta para abrir el apetito."
+                price="$100"
               />
               <MenuCard
-                img={platoImg}
-                name="Tostadas de Marlín"
-                desc="Marlín ahumado sobre tostada crujiente, aguacate y mayonesa de chipotle. Clásico."
-                price="$80"
+                img={camaronImg}
+                name="Aguachile Verde y Negro"
+                desc="Charola de camarones frescos en aguachile verde o negro, al estilo de la casa. "
+                price="$150 charola"
               />
               <MenuCard
                 img={cervezaImg}
                 name="Vasos Preparados"
-                desc="Micheladas, clamatos y cheladas preparadas al momento. Bien cargadas y bien frías."
-                price="$60"
+                desc="Vasos bien preparados, frescos y cargados. La compañía ideal para tu aguachile."
+                price="$45"
               />
             </div>
           </div>
@@ -484,12 +484,12 @@ const Aguachiles = () => {
                 <DetailCard
                   icon={<Clock size={24} color={C.red} />}
                   title="¿Cuándo?"
-                  lines={["Domingo, 19 de Abril", "1:00 PM en adelante 🎉"]}
+                  lines={["Domingo, 8 de Marzo", "10:00 AM en adelante 🎉"]}
                 />
                 <DetailCard
                   icon={<MapPin size={24} color={C.red} />}
                   title="¿Dónde?"
-                  lines={["Blvd. Del Mar 420", "Col. Centro, Mazatlán, Sin."]}
+                  lines={["Av. José de Jesús González García", "A un costado del Banco del Bienestar"]}
                 />
               </div>
 
@@ -497,7 +497,7 @@ const Aguachiles = () => {
               <div className="ag-map-wrap">
                 <iframe
                   title="Ubicación del negocio"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.2!2d-106.4111!3d23.2494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869f53aaf176e38d%3A0x17e4f3f5e2db0b3d!2sBlvd.%20del%20Mar%2C%20Mazatl%C3%A1n%2C%20Sin.!5e0!3m2!1ses!2smx!4v1700000000000"
+                  src="https://maps.google.com/maps?q=21.929806,-102.255278&z=17&output=embed"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -543,7 +543,7 @@ const Aguachiles = () => {
             Aguachiles y Vasos Preparados
           </h2>
           <p style={{ color:"rgba(255,255,255,.55)", fontSize:14 }}>
-            Mazatlán, Sinaloa · Apertura 19 Abril 2026
+            Villas, Aguascalientes · Apertura 8 Marzo 2026
           </p>
           <div style={{ display:"flex", alignItems:"center", gap:10, marginTop:8 }}>
             <Flame size={18} color={C.orange} className="ag-flame" />
