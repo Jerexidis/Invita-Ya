@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Smartphone, MousePointer, Globe, Check, Star, Menu, X, ArrowRight, Mail, Send } from 'lucide-react';
+
 import mockWeb from './assets/mocks/Web.png';
 import mockMovil from './assets/mocks/movil.PNG';
 
@@ -383,6 +384,8 @@ const LandingPageContent = () => {
                     </div>
                 </div>
             </footer>
+
+
 
         </div>
     );
