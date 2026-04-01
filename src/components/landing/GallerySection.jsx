@@ -7,7 +7,7 @@ const demos = [
         slug: '/demo/boda',
         title: 'Boda 💍',
         subtitle: 'Elegancia natural con tonos verdes',
-        badge: 'Más vendido 🔥',
+        badge: 'Más vendido',
         badgeColor: 'bg-invita-heart text-white',
         image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=2070&auto=format&fit=crop',
     },
@@ -15,7 +15,7 @@ const demos = [
         slug: '/demo/xv',
         title: 'XV Años 👑',
         subtitle: 'Diseño clásico y refinado en lila',
-        badge: 'Popular ⭐',
+        badge: 'Popular',
         badgeColor: 'bg-purple-500 text-white',
         image: 'https://images.unsplash.com/photo-1721069118889-13b854aae301?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
@@ -23,7 +23,7 @@ const demos = [
         slug: '/demo/bautizo',
         title: 'Bautizo 🧸',
         subtitle: 'Tonos pastel suaves y delicados',
-        badge: 'Nuevo ✨',
+        badge: 'Nuevo',
         badgeColor: 'bg-blue-500 text-white',
         image: 'https://plus.unsplash.com/premium_photo-1664372356812-fbeb0850a835?q=80&w=732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
@@ -37,7 +37,7 @@ const GallerySection = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <ScrollReveal className="text-center mb-16">
                     <span className="inline-flex items-center gap-2 px-4 py-2 bg-white text-invita-heart rounded-full text-sm font-semibold tracking-wide uppercase mb-6">
-                        🖼️ Ejemplos
+                        Ejemplos
                     </span>
                     <h2 className="text-3xl md:text-4xl font-serif text-invita-dark mb-4">
                         Encuentra tu estilo perfecto

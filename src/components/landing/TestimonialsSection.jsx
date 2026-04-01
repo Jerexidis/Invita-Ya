@@ -18,7 +18,7 @@ const testimonials = [
         name: 'María Elena G.',
         event: 'XV Años en León',
         date: 'Marzo 2026',
-        type: 'XV Años 🎀',
+        type: 'XV Años',
         initials: 'MG',
         color: 'bg-purple-100 text-purple-700',
     },
@@ -27,7 +27,7 @@ const testimonials = [
         name: 'Daniela y Luis',
         event: 'Boda en Guadalajara',
         date: 'Enero 2026',
-        type: 'Boda ✨',
+        type: 'Boda',
         initials: 'DL',
         color: 'bg-rose-100 text-rose-700',
     },
@@ -36,7 +36,7 @@ const testimonials = [
         name: 'Karen M.',
         event: 'Bautizo en Aguascalientes',
         date: 'Febrero 2026',
-        type: 'Bautizo 💙',
+        type: 'Bautizo',
         initials: 'KM',
         color: 'bg-blue-100 text-blue-700',
     },
@@ -112,15 +112,15 @@ const TestimonialsSection = () => {
                                 </p>
 
                                 {/* Author */}
-                                <div className="flex items-center gap-4">
-                                    <div className={`w-12 h-12 rounded-full ${t.color} flex items-center justify-center font-bold text-sm`}>
+                                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                                    <div className={`w-12 h-12 shrink-0 rounded-full ${t.color} flex items-center justify-center font-bold text-sm`}>
                                         {t.initials}
                                     </div>
-                                    <div className="text-left">
+                                    <div className="text-center sm:text-left">
                                         <p className="font-bold text-invita-dark">{t.name}</p>
                                         <p className="text-invita-gray text-sm">{t.event} · {t.date}</p>
                                     </div>
-                                    <span className="ml-2 px-2.5 py-1 bg-invita-cream rounded-full text-xs font-semibold text-invita-dark">
+                                    <span className="sm:ml-2 px-3 py-1 bg-invita-cream rounded-full text-xs font-semibold text-invita-dark whitespace-nowrap">
                                         {t.type}
                                     </span>
                                 </div>

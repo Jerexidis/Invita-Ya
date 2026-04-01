@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '524491120621';
 
@@ -16,10 +15,23 @@ const WhatsAppFAB = () => {
 
     useEffect(() => {
         const fabTimer = setTimeout(() => setIsVisible(true), 2000);
-        const tooltipTimer = setTimeout(() => setShowTooltip(true), 5000);
+
+        // Show tooltip sporadically: first at 5s, then every ~20s, each time for 3s
+        let intervalId;
+        const firstTooltip = setTimeout(() => {
+            setShowTooltip(true);
+            setTimeout(() => setShowTooltip(false), 3000);
+
+            intervalId = setInterval(() => {
+                setShowTooltip(true);
+                setTimeout(() => setShowTooltip(false), 3000);
+            }, 20000);
+        }, 5000);
+
         return () => {
             clearTimeout(fabTimer);
-            clearTimeout(tooltipTimer);
+            clearTimeout(firstTooltip);
+            if (intervalId) clearInterval(intervalId);
         };
     }, []);
 
@@ -44,17 +56,11 @@ const WhatsAppFAB = () => {
                                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                                className="bg-white px-4 py-3 rounded-xl shadow-lg border border-gray-100 flex items-center gap-3 max-w-[220px]"
+                                className="bg-white px-4 py-3 rounded-xl shadow-lg border border-gray-100 max-w-[220px]"
                             >
                                 <span className="text-sm text-invita-dark font-medium">
                                     ¿Tienes dudas? 💬
                                 </span>
-                                <button
-                                    onClick={() => setShowTooltip(false)}
-                                    className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
-                                >
-                                    <X size={14} />
-                                </button>
                             </motion.div>
                         )}
                     </AnimatePresence>
