@@ -47,10 +47,10 @@ const InvitacionBautizo = () => {
             {/* --- BOTÓN VOLVER --- */}
             <button
                 onClick={() => navigate('/')}
-                className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2.5 bg-white/90 backdrop-blur-md text-sm font-medium text-slate-700 rounded-full shadow-lg border border-slate-200/60 hover:bg-white hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                className="fixed top-5 left-5 z-50 flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-md border border-white/30 rounded-full text-bautizo-dark text-sm font-medium hover:bg-white hover:text-bautizo-dark transition-all duration-300 shadow-lg"
             >
                 <ArrowLeft size={16} />
-                <span>Volver al inicio</span>
+                Regresar
             </button>
 
             {/* --- HERO SECTION --- */}

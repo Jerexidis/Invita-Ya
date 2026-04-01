@@ -188,6 +188,21 @@
    ==================================== */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* offset for fixed navbar (h-20 = 80px) */
+}
+
+/* ====================================
+   Accessibility — Reduced Motion
+   ==================================== */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Hide scrollbar for gallery scroll */
