@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Smartphone, MousePointer, Globe, Check, Star, Menu, X, ArrowRight, Mail, Send } from 'lucide-react';
+import { Smartphone, MousePointer, Globe, Check, Star, Menu, X, ArrowRight, Mail, Send, Sparkles, Image, Clock, Users, Share2, Monitor } from 'lucide-react';
+
 import mockWeb from './assets/mocks/Web.png';
 import mockMovil from './assets/mocks/movil.PNG';
 
@@ -12,17 +13,20 @@ const LandingPageContent = () => {
     const navigate = useNavigate();
 
     // ---- WhatsApp Integration ----
-    const WHATSAPP_NUMBER = '524491120621'; // ← Cambia por tu número real (código país + número)
+    const WHATSAPP_NUMBER = '524491120621';
 
     const handleWhatsApp = (e) => {
         e.preventDefault();
         const eventLabels = { boda: 'Boda', xv: 'XV Años', bautizo: 'Bautizo / Baby Shower', cumple: 'Cumpleaños', otro: 'Otro Evento' };
         const lines = [
-            '¡Hola! 👋 Me interesa una invitación digital.',
+            '¡Hola! 👋 Me gustaría cotizar una invitación digital.',
             '',
-            `*Nombre:* ${contactName || 'No especificado'}`,
-            `*Tipo de evento:* ${eventLabels[eventType] || 'No especificado'}`,
-            contactMessage ? `*Mensaje:* ${contactMessage}` : '',
+            '✨ Datos de mi evento:',
+            `• Nombre: ${contactName || 'No especificado'}`,
+            `• Tipo de evento: ${eventLabels[eventType] || 'No especificado'}`,
+            contactMessage ? `• Detalles adicionales: ${contactMessage}` : '',
+            '',
+            'Quedo pendiente de la información 🤍'
         ].filter(Boolean);
         const text = encodeURIComponent(lines.join('\n'));
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
@@ -44,7 +48,8 @@ const LandingPageContent = () => {
 
                         {/* Desktop Menu */}
                         <div className="hidden md:flex items-center space-x-8">
-                            <a href="#features" className="text-invita-gray hover:text-invita-heart font-medium transition-colors">Lo que la hace especial</a>
+                            <a href="#features" className="text-invita-gray hover:text-invita-heart font-medium transition-colors">Contenido</a>
+                            <a href="#precios" className="text-invita-gray hover:text-invita-heart font-medium transition-colors">Precios</a>
                             <a href="#demo" className="text-invita-gray hover:text-invita-heart font-medium transition-colors">Ejemplos</a>
                             <a href="#contact" className="text-invita-gray hover:text-invita-heart font-medium transition-colors">Contáctanos</a>
                         </div>
@@ -62,7 +67,8 @@ const LandingPageContent = () => {
                 {isMenuOpen && (
                     <div className="md:hidden bg-white border-t border-invita-cream p-4 shadow-lg absolute w-full">
                         <div className="flex flex-col space-y-4">
-                            <a href="#features" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Características</a>
+                            <a href="#features" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Contenido</a>
+                            <a href="#precios" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Precios</a>
                             <a href="#demo" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Ejemplos</a>
                             <a href="#contact" className="text-invita-gray font-medium" onClick={() => setIsMenuOpen(false)}>Contacto</a>
                         </div>
@@ -93,7 +99,7 @@ const LandingPageContent = () => {
 
                     <div className="w-full md:w-1/2 relative mt-8 md:mt-0">
                         <div className="absolute inset-0 bg-gradient-to-tr from-rose-200 to-rose-100 rounded-full blur-3xl opacity-30 transform translate-x-10 translate-y-10"></div>
-                        
+
                         <div className="flex items-end justify-center scale-100 sm:scale-110 md:scale-100 lg:scale-[1.35] origin-bottom">
                             {/* Desktop / Laptop mockup */}
                             <div className="relative z-10 w-full bg-gray-500 rounded-lg sm:rounded-xl shadow-2xl border border-gray-600 overflow-hidden">
@@ -169,61 +175,110 @@ const LandingPageContent = () => {
                 </div>
             </section>
 
-            {/* --- DEMO MOCKUP --- */}
-            <section id="demo" className="py-24 px-4 overflow-hidden">
-                <div className="max-w-7xl mx-auto bg-invita-dark rounded-[2.5rem] p-8 md:p-20 text-center relative">
-                    {/* Background decoration */}
-                    <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-[2.5rem]">
-                        <div className="absolute top-0 left-1/4 w-96 h-96 bg-invita-heart/20 rounded-full blur-[100px]"></div>
-                        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-invita-rosa/20 rounded-full blur-[100px]"></div>
+            {/* --- PRICING --- */}
+            <section id="precios" className="py-24 bg-white">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-invita-cream text-invita-heart rounded-full text-sm font-semibold tracking-wide uppercase mb-6">
+                            <Sparkles size={14} className="fill-invita-heart" /> Precio único
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-serif text-invita-dark mb-4">Tu invitación digital completa</h2>
+                        <p className="text-invita-gray max-w-2xl mx-auto">Un solo pago, sin costos ocultos. Todo lo que necesitas para invitar con estilo.</p>
                     </div>
 
-                    <div className="relative z-10">
-                        <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">¿Listo para ver cómo luce?</h2>
-                        <p className="text-invita-gray mb-10 max-w-2xl mx-auto text-lg">
+                    <div className="bg-invita-cream rounded-3xl p-8 md:p-12 border border-invita-rosa/15 shadow-sm relative overflow-hidden">
+                        {/* Background decoration */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-invita-heart/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-invita-rosa/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+                        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+                            {/* Price */}
+                            <div className="text-center lg:text-left lg:w-2/5 space-y-4">
+                                <div className="flex items-baseline justify-center lg:justify-start gap-1">
+                                    <span className="text-6xl md:text-7xl font-extrabold text-invita-dark" style={{ fontFamily: "'Montserrat', sans-serif" }}>$299</span>
+                                    <span className="text-xl text-invita-gray font-medium">MXN</span>
+                                </div>
+                                <p className="text-invita-gray text-sm">por invitación · pago único</p>
+                                <button
+                                    onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                                    className="mt-4 w-full sm:w-auto px-8 py-4 bg-invita-dark text-white rounded-full hover:bg-invita-text transition-all font-medium flex items-center justify-center gap-2 mx-auto lg:mx-0"
+                                >
+                                    Pide la tuya <ArrowRight size={18} />
+                                </button>
+                            </div>
+
+                            {/* Divider */}
+                            <div className="hidden lg:block w-px h-64 bg-invita-rosa/20"></div>
+                            <div className="lg:hidden w-full h-px bg-invita-rosa/20"></div>
+
+                            {/* What's included */}
+                            <div className="lg:w-3/5">
+                                <h3 className="text-sm font-bold text-invita-dark uppercase tracking-widest mb-6">¿Qué incluye?</h3>
+                                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+                                    <PricingFeature icon={<Sparkles size={18} />} text="Diseño personalizado" />
+                                    <PricingFeature icon={<MousePointer size={18} />} text="RSVP en tiempo real" />
+                                    <PricingFeature icon={<Globe size={18} />} text="Mapa con Google Maps / Waze" />
+                                    <PricingFeature icon={<Image size={18} />} text="Galería de fotos" />
+                                    <PricingFeature icon={<Clock size={18} />} text="Cuenta regresiva animada" />
+                                    
+                                    
+                                    <PricingFeature icon={<Monitor size={18} />} text="100% responsivo" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* --- DEMO MOCKUP --- */}
+            <section id="demo" className="py-24 bg-invita-cream">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-serif text-invita-dark mb-4">¿Listo para ver cómo luce?</h2>
+                        <p className="text-invita-gray max-w-2xl mx-auto">
                             Ofrecemos diseños personalizados para Bodas, XV Años, Bautizos y Cumpleaños.
                             Elige tu estilo y nosotros hacemos el resto.
                         </p>
+                    </div>
 
-                        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
-                            {/* Boda Card */}
-                            <div
-                                onClick={() => navigate("/demo/boda")}
-                                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors cursor-pointer group"
-                            >
-                                <div className="h-48 bg-invita-dark rounded-xl mb-4 overflow-hidden relative">
-                                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" alt="Boda" />
-                                    <span className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-xs backdrop-blur-md">Demo</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-white mb-1">Boda Botánica</h3>
-                                <p className="text-invita-gray text-sm">Estilo minimalista con un toque verdoso</p>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {/* Boda Card */}
+                        <div
+                            onClick={() => navigate("/demo/boda")}
+                            className="bg-white p-5 rounded-2xl shadow-sm border border-invita-rosa/10 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group"
+                        >
+                            <div className="h-48 rounded-xl mb-4 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Boda" />
+                                <span className="absolute top-3 left-3 bg-white/90 text-invita-dark px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md">Demo</span>
                             </div>
+                            <h3 className="text-xl font-bold text-invita-dark mb-1">Boda Botánica</h3>
+                            <p className="text-invita-gray text-sm">Estilo minimalista con un toque verdoso</p>
+                        </div>
 
-                            {/* XV Años Card */}
-                            <div
-                                onClick={() => navigate("/demo/xv")}
-                                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors cursor-pointer group"
-                            >
-                                <div className="h-48 bg-invita-cream rounded-xl mb-4 overflow-hidden relative">
-                                    <img src="https://images.unsplash.com/photo-1721069118889-13b854aae301?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" alt="XV" />
-                                    <span className="absolute top-4 left-4 bg-invita-rosa/80 text-white px-3 py-1 rounded-full text-xs backdrop-blur-md">Demo</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-white mb-1">XV Años Elegante</h3>
-                                <p className="text-invita-gray text-sm">Diseño clásico y refinado.</p>
+                        {/* XV Años Card */}
+                        <div
+                            onClick={() => navigate("/demo/xv")}
+                            className="bg-white p-5 rounded-2xl shadow-sm border border-invita-rosa/10 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group"
+                        >
+                            <div className="h-48 rounded-xl mb-4 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1721069118889-13b854aae301?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="XV" />
+                                <span className="absolute top-3 left-3 bg-white/90 text-invita-dark px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md">Demo</span>
                             </div>
+                            <h3 className="text-xl font-bold text-invita-dark mb-1">XV Años Elegante</h3>
+                            <p className="text-invita-gray text-sm">Diseño clásico y refinado.</p>
+                        </div>
 
-                            {/* Bautizo Card */}
-                            <div
-                                onClick={() => navigate("/demo/bautizo")}
-                                className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors cursor-pointer group"
-                            >
-                                <div className="h-48 bg-sky-900 rounded-xl mb-4 overflow-hidden relative">
-                                    <img src="https://plus.unsplash.com/premium_photo-1664372356812-fbeb0850a835?q=80&w=732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" alt="Bautizo" />
-                                    <span className="absolute top-4 left-4 bg-sky-500/80 text-white px-3 py-1 rounded-full text-xs backdrop-blur-md">Demo</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-white mb-1">Bautizo Celestial</h3>
-                                <p className="text-invita-gray text-sm">Tonos pastel suaves y delicados.</p>
+                        {/* Bautizo Card */}
+                        <div
+                            onClick={() => navigate("/demo/bautizo")}
+                            className="bg-white p-5 rounded-2xl shadow-sm border border-invita-rosa/10 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group"
+                        >
+                            <div className="h-48 rounded-xl mb-4 overflow-hidden relative">
+                                <img src="https://plus.unsplash.com/premium_photo-1664372356812-fbeb0850a835?q=80&w=732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Bautizo" />
+                                <span className="absolute top-3 left-3 bg-white/90 text-invita-dark px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md">Demo</span>
                             </div>
+                            <h3 className="text-xl font-bold text-invita-dark mb-1">Bautizo Celestial</h3>
+                            <p className="text-invita-gray text-sm">Tonos pastel suaves y delicados.</p>
                         </div>
                     </div>
                 </div>
@@ -237,7 +292,7 @@ const LandingPageContent = () => {
                         {/* Left side - Text */}
                         <div className="w-full lg:w-1/2 space-y-6">
                             <span className="text-invita-heart font-bold text-xs tracking-widest uppercase mb-4 block">Hablemos hoy</span>
-                            <h2 className="text-4xl lg:text-5xl font-serif text-invita-dark leading-tight">¿Hablemos de tu evento?</h2>
+                            <h2 className="text-4xl lg:text-5xl font-serif text-invita-dark leading-tight">Hablemos de tu evento</h2>
                             <p className="text-invita-gray text-lg leading-relaxed max-w-md">
                                 Estamos listos para ayudarte a crear la invitación perfecta. Cuéntanos tu idea y nos pondremos en contacto contigo vía WhatsApp de inmediato.
                             </p>
@@ -335,7 +390,7 @@ const LandingPageContent = () => {
                                 </div>
                                 invitaya.ags@gmail.com
                             </a>
-                            <a href="#" className="flex items-center gap-3 text-sm hover:text-green-400 transition-colors group">
+                            <a href={`https://api.whatsapp.com/send/?phone=524491120621&text=${encodeURIComponent('¡Hola! 😊 Me interesa una invitación digital')}&type=phone_number&app_absent=0`} className="flex items-center gap-3 text-sm hover:text-green-400 transition-colors group">
                                 <div className="w-9 h-9 rounded-lg bg-invita-text/50 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
                                     {/* WhatsApp icon */}
                                     <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -363,7 +418,7 @@ const LandingPageContent = () => {
                                     </svg>
                                 </a>
                                 {/* WhatsApp */}
-                                <a href="#" aria-label="WhatsApp" className="w-10 h-10 rounded-xl bg-invita-text/50 flex items-center justify-center hover:bg-green-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/30">
+                                <a href={`https://api.whatsapp.com/send/?phone=524491120621&text=${encodeURIComponent('¡Hola! 😊 Me interesa una invitación digital')}&type=phone_number&app_absent=0`} aria-label="WhatsApp" className="w-10 h-10 rounded-xl bg-invita-text/50 flex items-center justify-center hover:bg-green-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/30">
                                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.394 0 12.03c0 2.122.554 4.197 1.604 6.046L0 24l6.105-1.602a11.83 11.83 0 005.94 1.586h.005c6.635 0 12.032-5.394 12.034-12.03a11.758 11.758 0 00-3.517-8.403z" />
                                     </svg>
@@ -376,10 +431,12 @@ const LandingPageContent = () => {
                     {/* Bottom bar */}
                     <div className="border-t border-invita-gray/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-xs opacity-50">© 2026 Invita-Ya. Todos los derechos reservados.</p>
-                        <p className="text-xs opacity-50">Hecho con ❤️ en Aguascalientes, México</p>
+
                     </div>
                 </div>
             </footer>
+
+
 
         </div>
     );
@@ -397,6 +454,13 @@ const FeatureCard = ({ icon, title, desc }) => (
     </div>
 );
 
-
+const PricingFeature = ({ icon, text }) => (
+    <div className="flex items-center gap-3">
+        <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-white flex items-center justify-center text-invita-heart shadow-sm">
+            {icon}
+        </div>
+        <span className="text-invita-dark font-medium text-sm">{text}</span>
+    </div>
+);
 
 export default LandingPageContent;
