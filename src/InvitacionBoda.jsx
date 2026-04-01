@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Heart,
   Calendar,
@@ -9,9 +10,11 @@ import {
   ChevronDown,
   Send,
   CheckCircle,
+  ArrowLeft,
 } from "lucide-react";
 
 const InvitacionBoda = () => {
+  const navigate = useNavigate();
   // --- Countdown ---
   const stackRef = useRef(null);
   const [timeLeft, setTimeLeft] = useState({ dias: 0, horas: 0, minutos: 0, segundos: 0 });
@@ -69,6 +72,14 @@ const InvitacionBoda = () => {
     <div className="min-h-screen bg-[#FDFBF7] text-slate-800 font-sans selection:bg-rose-200">
       {/* --- HERO SECTION --- */}
       <header className="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+        {/* Back button */}
+        <button
+          onClick={() => navigate('/')}
+          className="fixed top-5 left-5 z-50 flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-md border border-white/30 rounded-full text-white text-sm font-medium hover:bg-white hover:text-boda-dark transition-all duration-300 shadow-lg"
+        >
+          <ArrowLeft size={16} />
+          Regresar
+        </button>
         <div className="absolute inset-0 z-0">
           <div
             className="w-full h-full bg-cover bg-center opacity-90"
