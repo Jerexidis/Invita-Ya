@@ -83,6 +83,10 @@ const GallerySection = () => {
                                     <span className="text-invita-heart font-semibold text-sm">
                                         Desde $299 MXN
                                     </span>
+                                    <p className="text-invita-heart/80 text-xs mt-3 flex items-center gap-1.5 font-medium group-hover:text-invita-heart transition-colors">
+                                        <span className="inline-block animate-bounce">👆</span>
+                                        Pulsa aquí para ver el demo completo
+                                    </p>
                                 </div>
                             </div>
                         </StaggerItem>
