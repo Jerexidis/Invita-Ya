@@ -815,3 +815,10 @@ html {
     max-width: 320px !important;
   }
 }
+
+/* Hide chatbots on demo/event routes */
+body.hide-chatbot #bp-web-widget-container,
+body.hide-chatbot .chatbot-fab-container {
+  display: none !important;
+  visibility: hidden !important;
+}

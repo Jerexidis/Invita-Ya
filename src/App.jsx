@@ -13,10 +13,15 @@ import InvitacionInfantil from "./InvitacionInfantil";
 import Aguachiles from "./Aguachiles";
 
 
-function ScrollToTop() {
+function RouteTracker() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (pathname.startsWith('/demo') || pathname.startsWith('/eventos')) {
+      document.body.classList.add('hide-chatbot');
+    } else {
+      document.body.classList.remove('hide-chatbot');
+    }
   }, [pathname]);
   return null;
 }
@@ -24,7 +29,7 @@ function ScrollToTop() {
 function App() {
   return (
     <>
-      <ScrollToTop />
+      <RouteTracker />
       <Routes>
 
       {/* Landing */}
