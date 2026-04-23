@@ -6,6 +6,9 @@ import LandingPageContent from "./LandingPageContent";
 import InvitacionBoda from "./InvitacionBoda";
 import InvitacionXV from "./InvitacionXV";
 import InvitacionBautizo from "./InvitacionBautizo";
+import InvitacionComunion from "./InvitacionComunion";
+import InvitacionBabyShower from "./InvitacionBabyShower";
+import InvitacionInfantil from "./InvitacionInfantil";
 
 import Aguachiles from "./Aguachiles";
 
@@ -31,6 +34,9 @@ function App() {
       <Route path="/demo/boda" element={<InvitacionBoda />} />
       <Route path="/demo/xv" element={<InvitacionXV />} />
       <Route path="/demo/bautizo" element={<InvitacionBautizo />} />
+      <Route path="/demo/comunion" element={<InvitacionComunion />} />
+      <Route path="/demo/babyshower" element={<InvitacionBabyShower />} />
+      <Route path="/demo/infantil" element={<InvitacionInfantil />} />
 
       <Route path="/eventos/aguachiles" element={<Aguachiles />} />
 
