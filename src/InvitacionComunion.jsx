@@ -74,10 +74,10 @@ const InvitacionComunion = () => {
                 <div className="absolute bottom-24 left-16 w-48 h-48 rounded-full bg-comunion-softgold/15 blur-2xl pointer-events-none" />
 
                 {/* Cruces decorativas */}
-                <div className="absolute top-16 left-10 text-comunion-accent/25 animate-bounce-slow text-4xl select-none">✝</div>
+                <div className="absolute top-16 left-10 text-comunion-accent/25 animate-bounce-slow text-4xl select-none"><CrossIcon /></div>
                 <div className="absolute top-28 right-14 text-comunion-accent/20 animate-pulse-soft text-2xl select-none">✦</div>
                 <div className="absolute bottom-36 left-14 text-comunion-accent/20 animate-pulse text-xl select-none">✦</div>
-                <div className="absolute bottom-20 right-10 text-comunion-accent/25 animate-bounce-slow text-3xl select-none">✝</div>
+                <div className="absolute bottom-20 right-10 text-comunion-accent/25 animate-bounce-slow text-3xl select-none"><CrossIcon /></div>
 
                 {/* Línea decorativa superior */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-comunion-gold to-transparent opacity-60" />
@@ -85,9 +85,9 @@ const InvitacionComunion = () => {
                 <div className="relative z-10 space-y-5 animate-fade-in-up max-w-xl">
                     {/* Badge dorado */}
                     <div className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-comunion-gold/50 bg-comunion-gold/10 text-comunion-primary text-xs uppercase tracking-widest font-bold">
-                        <span className="text-comunion-gold">✝</span>
+                        <span className="text-comunion-gold flex items-center"><CrossIcon /></span>
                         Primera Comunión
-                        <span className="text-comunion-gold">✝</span>
+                        <span className="text-comunion-gold flex items-center"><CrossIcon /></span>
                     </div>
 
                     {/* Nombre */}
@@ -281,7 +281,7 @@ const InvitacionComunion = () => {
                                     <CheckCircle className="w-8 h-8 text-comunion-gold" />
                                 </div>
                                 <h3 className="text-2xl font-vibes text-comunion-primary mb-2">¡Gracias!</h3>
-                                <p className="text-comunion-gray text-sm">Nos vemos el 6 de septiembre. 🙏✝️</p>
+                                <p className="text-comunion-gray text-sm flex items-center justify-center gap-1">Nos vemos el 6 de septiembre. 🙏<CrossIcon className="w-3 h-3 text-comunion-gold" /></p>
                                 <button
                                     onClick={() => setRsvpStatus('idle')}
                                     className="mt-5 text-sm text-comunion-accent hover:text-comunion-primary underline transition-colors"
@@ -376,6 +376,12 @@ const EventCard = ({ icon, title, venue, address, time, accent }) => (
             </p>
         </div>
     </div>
+);
+
+const CrossIcon = ({ className = "w-[1em] h-[1em]" }) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={`inline-block ${className}`}>
+        <path d="M10.5 2h3v5.5H19v3h-5.5V22h-3v-11.5H5v-3h5.5V2z" />
+    </svg>
 );
 
 export default InvitacionComunion;
