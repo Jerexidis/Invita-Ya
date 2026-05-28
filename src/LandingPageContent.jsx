@@ -8,10 +8,12 @@ import TestimonialsSection from './components/landing/TestimonialsSection';
 import ContactSection from './components/landing/ContactSection';
 import Footer from './components/landing/Footer';
 import WhatsAppFAB from './components/ui/WhatsAppFAB';
+import HotSaleBanner from './components/landing/HotSaleBanner';
 
 const LandingPageContent = () => {
     return (
         <div className="min-h-screen bg-white font-sans text-invita-text">
+            <HotSaleBanner />
             <Navbar />
             <HeroSection />
             <BenefitsSection />
