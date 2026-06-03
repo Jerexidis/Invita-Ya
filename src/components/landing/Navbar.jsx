@@ -14,21 +14,11 @@ const navLinks = [
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [hasBanner, setHasBanner] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    // Detect Hot Sale banner presence
-    useEffect(() => {
-        const check = () => setHasBanner(!!document.getElementById('hot-sale-bar-h'));
-        check();
-        const observer = new MutationObserver(check);
-        observer.observe(document.body, { childList: true, subtree: true });
-        return () => observer.disconnect();
     }, []);
 
     const openWhatsApp = () => {
@@ -37,7 +27,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`fixed w-full z-50 transition-all duration-300 ${hasBanner ? 'top-[36px]' : 'top-0'} ${scrolled
+        <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled
             ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-invita-cream'
             : 'bg-white/90 backdrop-blur-md border-b border-invita-cream'
             }`}>

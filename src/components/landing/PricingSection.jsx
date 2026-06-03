@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Check, Flame, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, Check } from 'lucide-react';
 import ScrollReveal, { StaggerContainer, StaggerItem } from '../ui/ScrollReveal';
 
 const WHATSAPP_NUMBER = '524491120621';
@@ -6,11 +6,10 @@ const WHATSAPP_NUMBER = '524491120621';
 const plans = [
     {
         name: 'Esencial',
-        price: '$269',
-        oldPrice: '$299',
+        price: '$299',
+        oldPrice: null,
         desc: 'Para quienes quieren algo lindo y funcional.',
         popular: false,
-        discount: 10,
         features: [
             'Diseño de plantilla personalizable',
             'Información del evento (fecha, hora, lugar)',
@@ -22,11 +21,10 @@ const plans = [
     },
     {
         name: 'Premium',
-        price: '$399',
-        oldPrice: '$499',
+        price: '$499',
+        oldPrice: '$699',
         desc: 'El favorito de nuestras novias y quinceañeras.',
         popular: true,
-        discount: 20,
         features: [
             'Todo lo del plan Esencial',
             'Diseño 100% personalizado',
@@ -39,11 +37,10 @@ const plans = [
     },
     {
         name: 'Exclusivo',
-        price: '$559',
-        oldPrice: '$799',
+        price: '$799',
+        oldPrice: null,
         desc: 'La experiencia completa para tu evento soñado.',
         popular: false,
-        discount: 30,
         features: [
             'Todo lo del plan Premium',
             'Animaciones especiales y efectos',
@@ -56,91 +53,10 @@ const plans = [
     },
 ];
 
-/* ── Hot Sale ribbon CSS (injected once) ─────────────────────────── */
-const hotSaleStyles = `
-@keyframes hotSalePulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-}
-@keyframes hotSaleShimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-@keyframes flameDance {
-  0%, 100% { transform: rotate(-3deg) scale(1); }
-  25% { transform: rotate(3deg) scale(1.1); }
-  50% { transform: rotate(-2deg) scale(1.05); }
-  75% { transform: rotate(2deg) scale(1.08); }
-}
-`;
-
-/* Inject styles once */
-if (typeof document !== 'undefined') {
-    const id = 'hot-sale-styles';
-    if (!document.getElementById(id)) {
-        const style = document.createElement('style');
-        style.id = id;
-        style.textContent = hotSaleStyles;
-        document.head.appendChild(style);
-    }
-}
-
-/* ── Hot Sale Badge component ────────────────────────────────────── */
-const HotSaleBadge = ({ discount }) => {
-    // Color intensity scales with discount
-    const bg = discount >= 30
-        ? 'linear-gradient(135deg, #ff2d2d 0%, #ff6b35 50%, #ff2d2d 100%)'
-        : discount >= 20
-            ? 'linear-gradient(135deg, #ff4444 0%, #ff8833 50%, #ff4444 100%)'
-            : 'linear-gradient(135deg, #ff6b35 0%, #ffaa33 50%, #ff6b35 100%)';
-
-    const shadowColor = discount >= 30
-        ? 'rgba(255, 45, 45, 0.4)'
-        : discount >= 20
-            ? 'rgba(255, 68, 68, 0.35)'
-            : 'rgba(255, 107, 53, 0.3)';
-
-    return (
-        <div className="absolute -top-3 -right-3 z-20" style={{ animation: 'hotSalePulse 2s ease-in-out infinite' }}>
-            <div
-                className="relative flex items-center gap-1.5 px-4 py-2 rounded-xl text-white font-extrabold text-sm tracking-wide shadow-xl"
-                style={{
-                    background: bg,
-                    backgroundSize: '200% auto',
-                    animation: 'hotSaleShimmer 3s linear infinite',
-                    boxShadow: `0 6px 20px ${shadowColor}, 0 2px 8px rgba(0,0,0,0.15)`,
-                }}
-            >
-                <Flame size={16} className="text-yellow-200 drop-shadow" style={{ animation: 'flameDance 1s ease-in-out infinite' }} />
-                <span className="drop-shadow-sm">-{discount}%</span>
-            </div>
-        </div>
-    );
-};
-
-/* ── Hot Sale Banner (top of section) ────────────────────────────── */
-const HotSaleSectionBanner = () => (
-    <div className="flex items-center justify-center gap-3 mb-4">
-        <div
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-bold text-sm tracking-wide uppercase"
-            style={{
-                background: 'linear-gradient(135deg, #ff2d2d 0%, #ff6b35 40%, #ff2d2d 80%)',
-                backgroundSize: '200% auto',
-                animation: 'hotSaleShimmer 3s linear infinite',
-                boxShadow: '0 4px 15px rgba(255, 45, 45, 0.35)',
-            }}
-        >
-            <Flame size={18} className="text-yellow-200" style={{ animation: 'flameDance 1s ease-in-out infinite' }} />
-            🔥 HOT SALE 🔥
-            <Flame size={18} className="text-yellow-200" style={{ animation: 'flameDance 1s ease-in-out infinite', animationDelay: '0.3s' }} />
-        </div>
-    </div>
-);
-
 const PricingSection = () => {
     const handlePlanClick = (planName) => {
         const text = encodeURIComponent(
-            `¡Hola! 👋 Me interesa el plan ${planName} (HOT SALE) para mi invitación digital. ¿Me pueden dar más información?`
+            `¡Hola! 👋 Me interesa el plan ${planName} para mi invitación digital. ¿Me pueden dar más información?`
         );
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
     };
@@ -151,15 +67,14 @@ const PricingSection = () => {
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <ScrollReveal className="text-center mb-16">
-                    <HotSaleSectionBanner />
                     <span className="inline-flex items-center gap-2 px-4 py-2 bg-invita-cream text-invita-heart rounded-full text-sm font-semibold tracking-wide uppercase mb-6">
-                        <Sparkles size={14} className="fill-invita-heart" /> Precios de Hot Sale
+                        <Sparkles size={14} className="fill-invita-heart" /> Precios accesibles
                     </span>
                     <h2 className="text-3xl md:text-4xl font-serif text-invita-dark mb-4">
                         Una invitación para cada presupuesto
                     </h2>
                     <p className="text-invita-gray max-w-2xl mx-auto text-lg">
-                        ¡Aprovecha nuestros descuentos de <strong className="text-invita-heart">Hot Sale</strong>! Hasta <strong className="text-invita-heart">30% OFF</strong> por tiempo limitado 🔥
+                        Sin letras chiquitas. Sin costos ocultos. Un solo pago y tu invitación es tuya para siempre.
                     </p>
                 </ScrollReveal>
 
@@ -204,9 +119,6 @@ const PlanCard = ({ plan, onSelect }) => (
         : 'bg-invita-cream border border-invita-rosa/15 shadow-sm hover:shadow-lg'
         }`}>
 
-        {/* Hot Sale discount badge */}
-        {plan.discount && <HotSaleBadge discount={plan.discount} />}
-
         {plan.popular && (
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-invita-heart text-white px-5 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-lg shadow-invita-heart/30">
                 ⭐ Más Popular
@@ -216,7 +128,7 @@ const PlanCard = ({ plan, onSelect }) => (
         <h3 className="text-lg font-bold text-invita-dark mb-1">{plan.name}</h3>
         <p className="text-invita-gray text-sm mb-5">{plan.desc}</p>
 
-        <div className="flex items-baseline gap-2 mb-2">
+        <div className="flex items-baseline gap-2 mb-6">
             {plan.oldPrice && (
                 <span className="text-xl text-invita-gray line-through font-medium">{plan.oldPrice}</span>
             )}
@@ -225,27 +137,6 @@ const PlanCard = ({ plan, onSelect }) => (
             </span>
             <span className="text-invita-gray font-medium">MXN</span>
         </div>
-
-        {/* Savings tag */}
-        {plan.discount && (
-            <div className="mb-5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold"
-                style={{
-                    background: plan.discount >= 30
-                        ? 'rgba(255, 45, 45, 0.1)'
-                        : plan.discount >= 20
-                            ? 'rgba(255, 68, 68, 0.1)'
-                            : 'rgba(255, 107, 53, 0.1)',
-                    color: plan.discount >= 30
-                        ? '#cc2222'
-                        : plan.discount >= 20
-                            ? '#dd3333'
-                            : '#cc5500',
-                }}
-            >
-                <Zap size={12} />
-                Ahorras {plan.discount}% · Hot Sale
-            </div>
-        )}
 
         <button
             onClick={() => onSelect(plan.name)}
