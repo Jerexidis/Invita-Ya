@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ScrollReveal from '../ui/ScrollReveal';
 import LazyImage from '../ui/LazyImage';
@@ -62,7 +62,6 @@ const demos = [
 ];
 
 const GallerySection = () => {
-    const navigate = useNavigate();
     const scrollRef = useRef(null);
 
     const scroll = (direction) => {
@@ -116,8 +115,9 @@ const GallerySection = () => {
                     >
                         {demos.map((demo, i) => (
                             <div key={i} className="flex-shrink-0 w-[85vw] sm:w-[320px] snap-center">
-                                <div
-                                    onClick={() => navigate(demo.slug)}
+                                <Link
+                                    to={demo.slug}
+                                    aria-label={`Ver demo de ${demo.title}`}
                                     className="bg-white rounded-2xl shadow-sm border border-invita-rosa/10 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group/card overflow-hidden h-full flex flex-col"
                                 >
                                     {/* Image */}
@@ -148,14 +148,14 @@ const GallerySection = () => {
                                         <p className="text-invita-gray text-sm mb-4 flex-grow">{demo.subtitle}</p>
                                         <div className="mt-auto flex flex-col gap-2">
                                             <span className="text-invita-heart font-semibold text-sm">
-                                                Desde ${demo.price || '299'} MXN
+                                                {demo.price}
                                             </span>
                                             <span className="text-sm text-invita-rosa font-medium hover:text-invita-heart transition-colors flex items-center gap-2">
                                                 <span className="inline-block animate-bounce text-base">👆</span> Pulsa aquí para ver el demo completo
                                             </span>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                         ))}
                     </div>

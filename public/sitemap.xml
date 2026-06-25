@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://invita-ya.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url><loc>https://invita-ya.com/demo/boda</loc></url>
+  <url><loc>https://invita-ya.com/demo/xv</loc></url>
+  <url><loc>https://invita-ya.com/demo/bautizo</loc></url>
+  <url><loc>https://invita-ya.com/demo/comunion</loc></url>
+  <url><loc>https://invita-ya.com/demo/babyshower</loc></url>
+  <url><loc>https://invita-ya.com/demo/infantil</loc></url>
+  <url><loc>https://invita-ya.com/demo/rsvp</loc></url>
+</urlset>

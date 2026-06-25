@@ -1,15 +1,77 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Star, ArrowRight, MessageCircle, Check } from 'lucide-react';
+import { Star, ArrowRight, Check } from 'lucide-react';
 import mockWeb from '../../assets/mocks/Web.png';
 import mockMovil from '../../assets/mocks/movil.PNG';
-
-const WHATSAPP_NUMBER = '524491120621';
+import { gsap, useGSAP } from '../../utils/gsap';
 
 const HeroSection = () => {
-    const openWhatsApp = () => {
-        const text = encodeURIComponent('¡Hola! 👋 Me interesa cotizar una invitación digital.');
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
-    };
+    const heroRef = useRef(null);
+
+    useGSAP(() => {
+        const media = gsap.matchMedia();
+
+        media.add({
+            desktop: '(min-width: 768px)',
+            mobile: '(max-width: 767px)',
+            reduceMotion: '(prefers-reduced-motion: reduce)',
+        }, (context) => {
+            const { desktop, reduceMotion } = context.conditions;
+            if (reduceMotion) return;
+
+            gsap.to('.hero-background', {
+                yPercent: desktop ? 18 : 7,
+                xPercent: desktop ? -5 : 0,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: desktop ? 1 : 0.4,
+                },
+            });
+
+            gsap.to('.hero-desktop-mockup', {
+                y: desktop ? -35 : -12,
+                rotate: desktop ? -1.2 : 0,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: desktop ? 1 : 0.45,
+                },
+            });
+
+            gsap.to('.hero-mobile-mockup', {
+                y: desktop ? -65 : -20,
+                rotate: desktop ? 2.5 : 0,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: desktop ? 1.2 : 0.5,
+                },
+            });
+
+            if (desktop) {
+                gsap.to('.hero-floating-card', {
+                    y: -18,
+                    ease: 'none',
+                    stagger: 0.08,
+                    scrollTrigger: {
+                        trigger: heroRef.current,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1,
+                    },
+                });
+            }
+        });
+
+        return () => media.revert();
+    }, { scope: heroRef });
 
     const container = {
         hidden: {},
@@ -27,9 +89,9 @@ const HeroSection = () => {
     };
 
     return (
-        <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+        <section ref={heroRef} className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
             {/* Background decorative gradient */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-invita-cream via-rose-50 to-transparent rounded-full blur-3xl opacity-60 -translate-y-1/4 translate-x-1/4 pointer-events-none" />
+            <div className="hero-background absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-invita-cream via-rose-50 to-transparent rounded-full blur-3xl opacity-60 -translate-y-1/4 translate-x-1/4 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20 relative z-10">
 
@@ -103,28 +165,28 @@ const HeroSection = () => {
 
                     <div className="flex items-end justify-center scale-100 sm:scale-110 md:scale-100 lg:scale-[1.35] origin-bottom">
                         {/* Desktop mockup */}
-                        <div className="relative z-10 w-full bg-gray-500 rounded-lg sm:rounded-xl shadow-2xl border border-gray-600 overflow-hidden">
+                        <div className="hero-desktop-mockup relative z-10 w-full bg-gray-500 rounded-lg sm:rounded-xl shadow-2xl border border-gray-600 overflow-hidden">
                             <div className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 bg-gray-600">
                                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-400" />
                                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-400" />
                                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-400" />
                                 <span className="ml-2 sm:ml-3 flex-1 bg-gray-400 rounded-md h-4 sm:h-5 text-[8px] sm:text-[10px] text-gray-200 flex items-center px-1.5 sm:px-2">invita-ya.com</span>
                             </div>
-                            <img src={mockWeb} alt="Vista web de invitación" className="w-full object-cover object-top" loading="eager" fetchpriority="high" />
+                            <img src={mockWeb} alt="Vista web de invitación" className="w-full object-cover object-top" loading="eager" fetchPriority="high" />
                         </div>
 
                         {/* Mobile mockup */}
-                        <div className="relative z-20 -ml-6 sm:-ml-8 md:-ml-10 mb-0 w-[15%] min-w-[50px] bg-gray-500 rounded-[0.4rem] sm:rounded-[0.6rem] shadow-2xl border-2 border-gray-500 overflow-hidden scale-y-[1.15] origin-bottom">
+                        <div className="hero-mobile-mockup relative z-20 -ml-6 sm:-ml-8 md:-ml-10 mb-0 w-[15%] min-w-[50px] bg-gray-500 rounded-[0.4rem] sm:rounded-[0.6rem] shadow-2xl border-2 border-gray-500 overflow-hidden scale-y-[1.15] origin-bottom">
                             <div className="flex justify-center py-0.5 bg-gray-500 shrink-0">
                                 <div className="w-8 sm:w-12 h-0.5 sm:h-1 bg-gray-600 rounded-full" />
                             </div>
-                            <img src={mockMovil} alt="Vista móvil de invitación" className="w-full block" loading="eager" fetchpriority="high" />
+                            <img src={mockMovil} alt="Vista móvil de invitación" className="w-full block" loading="eager" fetchPriority="high" />
                         </div>
                     </div>
 
                     {/* Floating badge — RSVP */}
                     <motion.div
-                        className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 z-30 bg-white p-3 sm:p-4 rounded-xl shadow-lg flex items-center gap-2 sm:gap-3"
+                        className="hero-floating-card absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 z-30 bg-white p-3 sm:p-4 rounded-xl shadow-lg flex items-center gap-2 sm:gap-3"
                         animate={{ y: [0, -10, 0] }}
                         transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                     >
@@ -140,7 +202,7 @@ const HeroSection = () => {
 
                     {/* Floating badge — Location */}
                     <motion.div
-                        className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 z-30 bg-white p-2.5 sm:p-3 rounded-xl shadow-lg flex items-center gap-2"
+                        className="hero-floating-card absolute -top-2 -right-2 sm:-top-4 sm:-right-4 z-30 bg-white p-2.5 sm:p-3 rounded-xl shadow-lg flex items-center gap-2"
                         animate={{ y: [0, -8, 0] }}
                         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
                     >

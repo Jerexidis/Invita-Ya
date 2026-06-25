@@ -46,6 +46,14 @@ const photos = [
     { url: 'https://images.unsplash.com/photo-1678923685297-0ade9816275e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', label: '4 años' },
 ];
 
+const countdownStars = Array.from({ length: 25 }, (_, i) => ({
+    size: 1 + ((i * 17) % 31) / 10,
+    top: (i * 37) % 100,
+    left: (i * 61) % 100,
+    duration: 1.5 + ((i * 13) % 20) / 10,
+    delay: ((i * 7) % 30) / 10,
+}));
+
 /* ══════════════════════════════════════════════════ */
 
 const STYLES = `
@@ -241,7 +249,7 @@ const InvitacionToyStory = ({ onBack }) => {
                             </span>
                         </div>
                         <div style={{ lineHeight: 0.9, marginBottom: 10 }}>
-                            <span className="ts-bangers ts-hero-name" style={{ display: 'block', fontSize: 'clamp(80px,18vw,130px)', color: C.yellow, WebkitTextStroke: `4px ${C.dark}`, textShadow: `6px 6px 0 ${C.dark}` }}>Leo</span>
+                            <h1 className="ts-bangers ts-hero-name" style={{ display: 'block', margin: 0, fontSize: 'clamp(80px,18vw,130px)', color: C.yellow, WebkitTextStroke: `4px ${C.dark}`, textShadow: `6px 6px 0 ${C.dark}` }}>Leo</h1>
                             <span className="ts-bangers" style={{ display: 'block', fontSize: 'clamp(40px,8vw,65px)', color: C.white, WebkitTextStroke: `3px ${C.dark}`, textShadow: `4px 4px 0 ${C.dark}` }}>cumple</span>
                             <span className="ts-bangers ts-hero-number" style={{ display: 'block', fontSize: 'clamp(110px,25vw,180px)', color: C.red, WebkitTextStroke: `5px ${C.dark}`, textShadow: `8px 8px 0 ${C.dark}` }}>5</span>
                         </div>
@@ -291,10 +299,21 @@ const InvitacionToyStory = ({ onBack }) => {
 
                 {/* ── COUNTDOWN ── */}
                 <section style={{ background: C.navy, padding: '50px 20px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-                    {Array.from({ length: 25 }).map((_, i) => {
-                        const sz = Math.random() * 3 + 1;
-                        return <div key={i} style={{ position: 'absolute', width: sz, height: sz, background: 'white', borderRadius: '50%', top: `${Math.random() * 100}%`, left: `${Math.random() * 100}%`, animation: `tsTwinkle ${1.5 + Math.random() * 2}s ease-in-out ${Math.random() * 3}s infinite` }} />;
-                    })}
+                    {countdownStars.map((star, i) => (
+                        <div
+                            key={i}
+                            style={{
+                                position: 'absolute',
+                                width: star.size,
+                                height: star.size,
+                                background: 'white',
+                                borderRadius: '50%',
+                                top: `${star.top}%`,
+                                left: `${star.left}%`,
+                                animation: `tsTwinkle ${star.duration}s ease-in-out ${star.delay}s infinite`,
+                            }}
+                        />
+                    ))}
                     {rockets.map(r => <div key={r.id} className="ts-rocket" style={{ top: `${r.top}%`, left: 0 }}>🚀</div>)}
                     <span className="ts-bangers" style={{ display: 'block', fontSize: 42, color: C.yellow, letterSpacing: 3, textShadow: '3px 3px 0 rgba(0,0,0,0.4)', marginBottom: 30, position: 'relative', zIndex: 1 }}>¡Faltan solo!</span>
                     <div style={{ display: 'flex', justifyContent: 'center', gap: 16, flexWrap: 'wrap', position: 'relative', zIndex: 1 }}>

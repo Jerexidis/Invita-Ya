@@ -1,14 +1,7 @@
-import { ArrowRight, MessageCircle, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
 import ScrollReveal from '../ui/ScrollReveal';
 
-const WHATSAPP_NUMBER = '524491120621';
-
 const FinalCTASection = () => {
-    const openWhatsApp = () => {
-        const text = encodeURIComponent('¡Hola! 👋 Me interesa cotizar una invitación digital.');
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
-    };
-
     return (
         <section className="pt-24 pb-16 bg-invita-dark relative overflow-hidden">
             {/* Decorative blobs */}
