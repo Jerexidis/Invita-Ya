@@ -10,8 +10,10 @@ const InvitacionBabyShower = lazy(() => import("./InvitacionBabyShower"));
 const InvitacionInfantil = lazy(() => import("./InvitacionInfantil"));
 const Aguachiles = lazy(() => import("./Aguachiles"));
 const DemoRsvpDashboard = lazy(() => import("./DemoRsvpDashboard"));
+const Cumple23 = lazy(() => import("./Cumple23"));
 
 const routeMetadata = {
+  "/felices-23": { title: "Felices 23, mi amor ♡", description: "Un pequeño universo de recuerdos para celebrar tus 23." },
   "/": {
     title: "Invita-Ya — Invitaciones Digitales para Bodas, XV Años, Bautizos y más",
     description: "Invitaciones digitales interactivas para bodas, XV años, bautizos y eventos en México.",
@@ -94,6 +96,7 @@ function App() {
       <Route path="/demo/rsvp" element={<DemoRsvpDashboard />} />
 
       <Route path="/eventos/aguachiles" element={<Aguachiles />} />
+      <Route path="/felices-23" element={<Cumple23 />} />
       <Route path="*" element={<NotFound />} />
 
       {/* Invitación real - descomentar cuando el componente esté listo */}

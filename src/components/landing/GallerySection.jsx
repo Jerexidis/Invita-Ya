@@ -1,8 +1,10 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import ScrollReveal from '../ui/ScrollReveal';
+import { ArrowUpRight, CalendarDays, ExternalLink, Sparkles } from 'lucide-react';
+import { gsap, useGSAP } from '../../utils/gsap';
 import LazyImage from '../ui/LazyImage';
+
+const REAL_EVENTS_URL = 'https://eventos.invita-ya.com';
 
 const demos = [
     {
@@ -12,7 +14,6 @@ const demos = [
         badge: 'Más vendido',
         badgeColor: 'bg-invita-heart text-white',
         image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=2070&auto=format&fit=crop',
-        price: 'Desde $299 MXN',
     },
     {
         slug: '/demo/xv',
@@ -21,7 +22,6 @@ const demos = [
         badge: 'Popular',
         badgeColor: 'bg-purple-500 text-white',
         image: 'https://images.unsplash.com/photo-1721069118889-13b854aae301?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        price: 'Desde $299 MXN',
     },
     {
         slug: '/demo/bautizo',
@@ -30,7 +30,6 @@ const demos = [
         badge: 'Tierno',
         badgeColor: 'bg-blue-500 text-white',
         image: 'https://plus.unsplash.com/premium_photo-1664372356812-fbeb0850a835?q=80&w=732&auto=format&fit=crop',
-        price: 'Desde $299 MXN',
     },
     {
         slug: '/demo/comunion',
@@ -39,7 +38,6 @@ const demos = [
         badge: 'Premium',
         badgeColor: 'bg-[#C9A84C] text-white',
         image: 'https://images.unsplash.com/photo-1683150372139-31611c320d73?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        price: 'Desde $499 MXN',
     },
     {
         slug: '/demo/babyshower',
@@ -48,7 +46,6 @@ const demos = [
         badge: 'Nuevo',
         badgeColor: 'bg-[#E8B4B8] text-white',
         image: 'https://plus.unsplash.com/premium_photo-1710894497488-8ec8c15a78c6?q=80&w=1081&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        price: 'Desde $499 MXN',
     },
     {
         slug: '/demo/infantil',
@@ -57,115 +54,216 @@ const demos = [
         badge: 'Divertido',
         badgeColor: 'bg-[#FF9F1C] text-white',
         image: 'https://plus.unsplash.com/premium_photo-1663839411959-884b1e1667f5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        price: 'Desde $499 MXN',
+    },
+];
+
+const events = [
+    {
+        title: 'Kassandra & Brian',
+        type: 'Boda',
+        date: 'Mayo 2026',
+        href: `${REAL_EVENTS_URL}/i/kassandra-brian`,
+        image: `${REAL_EVENTS_URL}/invitations/kassandra-brian/img/Portada.jpeg`,
+    },
+    {
+        title: 'Melani Marisol',
+        type: 'XV Años',
+        date: 'Mayo 2026',
+        href: `${REAL_EVENTS_URL}/i/melani-marisol`,
+        image: `${REAL_EVENTS_URL}/invitations/melani-marisol/img/og-preview-v5.jpg`,
+    },
+    {
+        title: 'Kass & Brian',
+        type: 'Despedida',
+        date: 'Mayo 2026',
+        href: `${REAL_EVENTS_URL}/i/despedida-kass-brian`,
+        image: `${REAL_EVENTS_URL}/invitations/despedida-kass-brian/img/share-preview.png`,
     },
 ];
 
 const GallerySection = () => {
-    const scrollRef = useRef(null);
+    const [activeTab, setActiveTab] = useState('demos'); // 'demos' | 'events'
+    const sectionRef = useRef(null);
 
-    const scroll = (direction) => {
-        if (scrollRef.current) {
-            const { current } = scrollRef;
-            // Scroll roughly one card width (320px + gap)
-            const scrollAmount = direction === 'left' ? -344 : 344;
-            current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    };
+    useGSAP(() => {
+        const media = gsap.matchMedia();
+
+        media.add({
+            desktop: '(min-width: 768px)',
+            mobile: '(max-width: 767px)',
+            reduceMotion: '(prefers-reduced-motion: reduce)',
+        }, (context) => {
+            const { desktop, reduceMotion } = context.conditions;
+            if (reduceMotion) return;
+
+            gsap.from('.gallery-heading', {
+                opacity: 0,
+                y: desktop ? 45 : 24,
+                duration: desktop ? 0.8 : 0.55,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: desktop ? 'top 72%' : 'top 86%',
+                    once: true,
+                },
+            });
+        });
+
+        return () => media.revert();
+    }, { scope: sectionRef });
+
+    useGSAP(() => {
+        gsap.fromTo('.gallery-card',
+            { opacity: 0, y: 30, scale: 0.96 },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.65,
+                stagger: 0.08,
+                ease: 'power3.out',
+                overwrite: 'auto'
+            }
+        );
+    }, { dependencies: [activeTab], scope: sectionRef });
 
     return (
-        <section id="demo" className="py-24 bg-invita-cream">
+        <section ref={sectionRef} id="demo" className="bg-invita-dark py-24 text-white border-t border-white/5">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <ScrollReveal className="text-center mb-12">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 bg-white text-invita-heart rounded-full text-sm font-semibold tracking-wide uppercase mb-6">
-                        Ejemplos
-                    </span>
-                    <h2 className="text-3xl md:text-4xl font-serif text-invita-dark mb-4">
-                        Encuentra tu estilo perfecto
-                    </h2>
-                    <p className="text-invita-gray max-w-2xl mx-auto text-lg">
-                        Cada evento es único. Explora nuestros diseños y elige el que hable por ti.
-                    </p>
-                </ScrollReveal>
+                
+                {/* Heading */}
+                <div className="gallery-heading mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                    <div>
+                        <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-invita-rosa">
+                            <Sparkles size={15} /> Portafolio
+                        </span>
+                        <h2 className="font-serif text-3xl md:text-4xl">
+                            Encuentra tu estilo perfecto
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-white/65">
+                            Explora nuestras plantillas de demostración interactivas o echa un vistazo a invitaciones reales publicadas para nuestros clientes.
+                        </p>
+                    </div>
+                    {activeTab === 'events' && (
+                        <a
+                            href={REAL_EVENTS_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold transition hover:border-invita-rosa hover:text-invita-rosa"
+                        >
+                            Ver todo el portafolio <ExternalLink size={16} />
+                        </a>
+                    )}
+                </div>
 
-                {/* Carousel Container */}
-                <div className="relative group">
+                {/* Tabs Switcher */}
+                <div className="flex justify-center mb-12">
+                    <div className="flex gap-2 p-1.5 bg-white/5 border border-white/10 rounded-full">
+                        <button
+                            onClick={() => setActiveTab('demos')}
+                            className={`px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 relative ${
+                                activeTab === 'demos'
+                                    ? 'bg-invita-heart text-white shadow-[0_0_12px_rgba(214,82,127,0.3)]'
+                                    : 'text-white/70 hover:text-white'
+                            }`}
+                        >
+                            Demos de Plantillas
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('events')}
+                            className={`px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 relative ${
+                                activeTab === 'events'
+                                    ? 'bg-invita-heart text-white shadow-[0_0_12px_rgba(214,82,127,0.3)]'
+                                    : 'text-white/70 hover:text-white'
+                            }`}
+                        >
+                            Eventos Reales
+                        </button>
+                    </div>
+                </div>
 
-                    {/* Botón Izquierdo (visible en pantallas medianas+) */}
-                    <button
-                        onClick={() => scroll('left')}
-                        aria-label="Scroll left"
-                        className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full items-center justify-center shadow-lg border border-invita-rosa/20 text-invita-dark hover:bg-invita-cream transition-transform hover:scale-110 opacity-0 group-hover:opacity-100"
-                    >
-                        <ChevronLeft size={24} />
-                    </button>
-
-                    {/* Botón Derecho */}
-                    <button
-                        onClick={() => scroll('right')}
-                        aria-label="Scroll right"
-                        className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full items-center justify-center shadow-lg border border-invita-rosa/20 text-invita-dark hover:bg-invita-cream transition-transform hover:scale-110 opacity-0 group-hover:opacity-100"
-                    >
-                        <ChevronRight size={24} />
-                    </button>
-
-                    <div
-                        ref={scrollRef}
-                        className="flex gap-6 overflow-x-auto snap-x snap-mandatory pt-4 pb-8 -mx-4 px-4 sm:px-0 sm:mx-0 hide-scrollbar scroll-smooth"
-                    >
-                        {demos.map((demo, i) => (
-                            <div key={i} className="flex-shrink-0 w-[85vw] sm:w-[320px] snap-center">
+                {/* Grid / Scroll Container */}
+                <div className="flex md:grid gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pt-4 pb-8 -mx-4 px-4 md:mx-0 md:px-0 md:grid-cols-3 hide-scrollbar scroll-smooth">
+                    {activeTab === 'demos' ? (
+                        demos.map((demo) => (
+                            <div key={demo.slug} className="gallery-card flex-shrink-0 w-[80vw] sm:w-[300px] md:w-auto snap-center">
                                 <Link
                                     to={demo.slug}
-                                    aria-label={`Ver demo de ${demo.title}`}
-                                    className="bg-white rounded-2xl shadow-sm border border-invita-rosa/10 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group/card overflow-hidden h-full flex flex-col"
+                                    className="group block overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-invita-rosa/50 h-full flex flex-col hover:shadow-[0_0_20px_rgba(214,82,127,0.15)]"
                                 >
-                                    {/* Image */}
-                                    <div className="h-48 overflow-hidden relative shrink-0">
+                                    <div className="relative aspect-[4/3] overflow-hidden bg-white/10 shrink-0">
                                         <LazyImage
                                             src={demo.image}
                                             alt={demo.title}
-                                            className="w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-500"
+                                            className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
                                             wrapperClassName="h-full"
                                         />
-
-                                        {/* Badge */}
-                                        <span className={`absolute top-3 left-3 ${demo.badgeColor} px-3 py-1 rounded-full text-xs font-bold backdrop-blur-md shadow-sm`}>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                                        <span className={`absolute top-4 left-4 ${demo.badgeColor} px-3 py-1 rounded-full text-xs font-bold shadow-sm`}>
                                             {demo.badge}
                                         </span>
-
-                                        {/* Hover overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                                            <span className="text-white font-semibold text-sm flex items-center gap-2">
-                                                Ver demo interactivo →
-                                            </span>
-                                        </div>
                                     </div>
-
-                                    {/* Text */}
-                                    <div className="p-5 flex flex-col flex-grow">
-                                        <h3 className="text-xl font-bold text-invita-dark mb-1">{demo.title}</h3>
-                                        <p className="text-invita-gray text-sm mb-4 flex-grow">{demo.subtitle}</p>
-                                        <div className="mt-auto flex flex-col gap-2">
-                                            <span className="text-invita-heart font-semibold text-sm">
-                                                {demo.price}
+                                    <div className="flex flex-col justify-between flex-grow p-5">
+                                        <div>
+                                            <h3 className="text-xl font-bold text-white mb-1">{demo.title}</h3>
+                                            <p className="text-white/60 text-sm mb-4">{demo.subtitle}</p>
+                                        </div>
+                                        <div className="flex items-center justify-between mt-auto pt-2">
+                                            <span className="text-xs text-invita-rosa font-bold tracking-wider uppercase group-hover:text-white transition-colors duration-300">
+                                                Probar Demo
                                             </span>
-                                            <span className="text-sm text-invita-rosa font-medium hover:text-invita-heart transition-colors flex items-center gap-2">
-                                                <span className="inline-block animate-bounce text-base">👆</span> Pulsa aquí para ver el demo completo
-                                            </span>
+                                            <ArrowUpRight className="text-invita-rosa transition group-hover:translate-x-1 group-hover:-translate-y-1" />
                                         </div>
                                     </div>
                                 </Link>
                             </div>
-                        ))}
-                    </div>
+                        ))
+                    ) : (
+                        events.map((event) => (
+                            <div key={event.href} className="gallery-card flex-shrink-0 w-[80vw] sm:w-[300px] md:w-auto snap-center">
+                                <a
+                                    href={event.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group block overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-invita-rosa/50 h-full flex flex-col hover:shadow-[0_0_20px_rgba(214,82,127,0.15)]"
+                                >
+                                    <div className="relative aspect-[4/3] overflow-hidden bg-white/10 shrink-0">
+                                        <LazyImage
+                                            src={event.image}
+                                            alt={`Invitación real: ${event.title}`}
+                                            className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                                            wrapperClassName="h-full"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                                        <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-invita-dark">
+                                            {event.type}
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-col justify-between flex-grow p-5">
+                                        <div>
+                                            <h3 className="text-xl font-bold text-white mb-1">{event.title}</h3>
+                                            <p className="mt-2 flex items-center gap-2 text-sm text-white/55 mb-4">
+                                                <CalendarDays size={14} /> {event.date}
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center justify-between mt-auto pt-2">
+                                            <span className="text-xs text-invita-rosa font-bold tracking-wider uppercase group-hover:text-white transition-colors duration-300">
+                                                Ver Invitación 🔗
+                                            </span>
+                                            <ArrowUpRight className="text-invita-rosa transition group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        ))
+                    )}
+                </div>
 
-                    {/* Swipe indicator (Mobile solo) */}
-                    <div className="md:hidden text-center mt-2 flex items-center justify-center gap-3 text-invita-gray/60">
-                        <span className="w-10 h-[1px] bg-invita-gray/30"></span>
-                        <span className="text-xs font-medium tracking-wide uppercase">Desliza para explorar</span>
-                        <span className="w-10 h-[1px] bg-invita-gray/30"></span>
-                    </div>
+                {/* Swipe indicator (Mobile only) */}
+                <div className="md:hidden text-center mt-2 flex items-center justify-center gap-3 text-white/40">
+                    <span className="w-10 h-[1px] bg-white/20"></span>
+                    <span className="text-[10px] font-medium tracking-wide uppercase">Desliza para explorar</span>
+                    <span className="w-10 h-[1px] bg-white/20"></span>
                 </div>
             </div>
         </section>

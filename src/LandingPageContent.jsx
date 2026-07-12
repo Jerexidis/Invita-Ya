@@ -4,7 +4,6 @@ import BenefitsSection from './components/landing/BenefitsSection';
 import HowItWorksSection from './components/landing/HowItWorksSection';
 import GallerySection from './components/landing/GallerySection';
 import RsvpShowcaseSection from './components/landing/RsvpShowcaseSection';
-import RealEventsSection from './components/landing/RealEventsSection';
 import PricingSection from './components/landing/PricingSection';
 import TestimonialsSection from './components/landing/TestimonialsSection';
 import ContactSection from './components/landing/ContactSection';
@@ -19,7 +18,6 @@ const LandingPageContent = () => {
             <BenefitsSection />
             <HowItWorksSection />
             <GallerySection />
-            <RealEventsSection />
             <RsvpShowcaseSection />
             <PricingSection />
             <TestimonialsSection />

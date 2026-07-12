@@ -7,8 +7,7 @@ const WHATSAPP_NUMBER = '524491120621';
 const navLinks = [
     { href: '#beneficios', label: 'Beneficios' },
     { href: '#como-funciona', label: 'Cómo Funciona' },
-    { href: '#demo', label: 'Ejemplos' },
-    { href: '#eventos-reales', label: 'Eventos Reales' },
+    { href: '#demo', label: 'Portafolio' },
     { href: '#precios', label: 'Precios' },
 ];
 
